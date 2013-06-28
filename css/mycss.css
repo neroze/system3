@@ -1,0 +1,38 @@
+/* 
+    Document   : mycss
+    Created on : Jun 20, 2013, 6:46:54 PM
+    Author     : Pyscho Rozan
+    Description:
+        Purpose of the stylesheet follows.
+*/
+c
+{
+    color: #0088cc;
+    margin: 0px 0px 0px -56px;
+}
+
+.date1
+{
+margin: 0px 5px 0px 11px;
+width:130px;
+}
+.date2
+{
+    margin: 0px 16px 0px 0px;
+   
+width:130px;
+}
+.btn1
+{
+float:right;
+margin: 0px 0px 0px 0px;
+}
+c1
+{
+     margin: 0px 11px 0px 6px;
+    color: #0088cc;
+}
+.navbar-form pull-left
+{
+    margin: 27px 0px 0px 0px;
+}
