@@ -160,11 +160,21 @@ class Client_Mdl extends CI_Model {
     } 
        public function cl_search($match = "default") {
         $this->db->select('*');
-        //$this->db->from('client');
+        $this->db->from('client');
         $this->db->like('firstname', $match);
        // $this->db->join('client', 'project.cl_id = client.c_id');
-        $query = $this->db->get('client');
-        return $query->result_array();
+        $query = $this->db->get();
+        return $query->result();
+    } 
+         public function p_search($match = "default") {
+        $this->db->select('p_id,project.title as project_title,amount,paid_date,pro_id');
+        //$this->db->from('payment');
+       // $this->db->from('project');
+        $this->db->like('project.title', $match);
+        $this->db->join('project', 'payment.pro_id = project.id');
+        $query = $this->db->get('payment');
+        //echo $this->db->last_query();
+        return $query->result();
     } 
 }
 

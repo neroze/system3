@@ -1,72 +1,4 @@
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>ATTENDANCE MANAGEMENT SYSTEM</title>
-
-        <link href="<?php echo base_url('css/bootstrap.min.css'); ?>" rel="stylesheet" media="screen">
-
-        <link rel="stylesheet" href=<?php echo base_url('css/bootstrap.css') ?> />
-        <link rel="stylesheet" href=<?php echo base_url('css/bootstrap-responsive.css') ?> />
-        <link rel="stylesheet" href=<?php echo base_url('css/bootstrap-responsive.min.css') ?> />
-        <link rel="stylesheet" href=<?php echo base_url('css/mycss.css') ?> />
-        <link rel="stylesheet" href=<?php echo base_url('css/docs.css') ?> />
-        <link rel="stylesheet" href=<?php echo base_url('css/bootstrap-datetimepicker.min.css') ?> />
-        <link rel="stylesheet" href=<?php echo base_url('css/bootstrap-combined.min.css') ?> />
-        <link rel="stylesheet" href=<?php echo base_url('css/bootstrap-timepicker.min.css') ?> />
-        <script type="text/javascript" src="<?php echo base_url('js/jquery.js') ?>"></script>
-        <script type="text/javascript" src="<?php echo base_url('js/jquery.validate.js') ?>" ></script>
-        <script type="text/javascript" src="<?php echo base_url('js/jquery.validate.min.js') ?>" ></script>
-        <script type="text/javascript" src="<?php echo base_url('js/bootstrap-datetimepicker.min.js') ?>" ></script>
-        <script type="text/javascript" src="<?php echo base_url('js/bootstrap-timepicker.min.js') ?>" ></script>
-        <script type="text/javascript" src="<?php echo base_url('js/bootstrap.min.js') ?>"></script>
-        <script type="text/javascript" src="<?php echo base_url('js/bootstrap-scrollspy.js') ?>"></script>
-        <script type="text/javascript" src="<?php echo base_url('js/bootstrap-affix.js') ?>"></script>
-        <script type="text/javascript" src="<?php echo base_url('js/bootstrap-popover.js') ?>"></script>
-        <script src="<?php echo base_url('js/application.js') ?>"></script>
-
-    </head>
-
-    <body data-spy="scroll" data-target=".bs-docs-sidebar">
-        <div class="navbar navbar-inverse navbar-fixed-top" href style="width: 1346px;">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a href="http://localhost/system3/index.php/client"
-                       href style="margin-left: -69px; color: #999; width: 420px; float: left; font-size: 21px;font-family: Helvetica Neue, Helvetica, Arial, sans-serif;text-decoration: none;margin-top: 10px;"
-                       >3Hammers Attendance Management System</a>
-
-
-                    <ul class="nav nav-pills">
-                        <li class="dropdown">
-                            <a class="dropdown-toggle"
-                               data-toggle="dropdown"
-                               href="" href style="  margin-left: 1143px; margin-top: -26px;width: 76px;">
-                                Check Out
-                                <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu" href style="  margin-left: 1147px; "><li>
-                                    <a href="http://localhost/attendence_system/index.php/auth/logout">Check Out</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span3 bs-docs-sidebar">
-                    <h3 style="margin: 27px 0px -19px 2px;">Manage user</h3>
-
-                    <ul class="nav nav-list bs-docs-sidenav">
-                        <li class="active"><a href="http://localhost/system3/index.php/client"><i class="icon-chevron-right"></i> Client</a></li>
-                        <li><a href="http://localhost/system3/index.php/client/pro_getdata"><i class="icon-chevron-right"></i>Project</a></li>
-                        <li ><a href="http://localhost/system3/index.php/client/payment_getdata"><i class="icon-chevron-right"></i>Payment</a></li>
-
-
-                    </ul>
                     <div class="span5">
                          <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-header">
@@ -102,6 +34,7 @@
                     </div>
                 </div>
                 <div class="span9">
+                 <div class="span9"></div>
                     <div class="row-fluid">
                         <div class="span9">
 
@@ -117,7 +50,7 @@
                                 <div class="nav-collapse collapse">
                                     <div class="navbar-search pull-left">
                                         <?php echo form_open('client/c_search', array('method' => 'post', 'name' => 'search')); ?>
-                                        <input type="text"  name="search" class="search-query" placeholder="Search" style="margin-left:-18px;margin-top: 28px;"/>
+                                        <input type="text"  name="search" class="search-query" placeholder="Search" style="margin-left:-18px;"/>
                                     </div>
                                     <?php echo form_close(); ?>
                                 </div></a></div>
@@ -180,7 +113,7 @@
                             echo "<td>";
                             echo '<div class="span8">';
                             echo '<div class="row-fluid">';
-                            echo'<div class="span4">';
+                            echo'<div class="span12">';
                             echo '<div class="country">';
                             echo $rec->country . "" . "";
                             echo '</div>';
@@ -190,13 +123,14 @@
                             echo form_submit('update', 'update', 'class="update btn"');
                             echo form_close();
                             echo'</div>';
-                            echo '<div class="span4">';
-                            echo form_submit('edit', 'edit', 'class="edit btn"');
-                            echo'</div>';
+                           
                             echo '<div class="span4">';
                             echo form_open('client/cdeletedata/' . $rec->c_id, array('method' => 'post'));
                             echo form_submit('delete', 'delete', 'class="delete btn"');
                             echo form_close();
+                             echo '<div class="span4">';
+                            echo form_submit('edit', 'edit', 'class="edit btn"');
+                            echo'</div>';
                             echo " </td> </tr></div></div>";
                         }
                         ?> 
@@ -216,6 +150,22 @@
                 $('.update').hide();
                 //var row=($(this).attr('id'));
                 // var row = ($('tr').length)-1;
+                      $(".btn-primary").live('click',function(){
+                   var post_data=$('.modal-body').find('input').serialize();
+                     $.ajax(
+                        {
+                            url: "<?php echo site_url("client/client_insert"); ?>",
+                            type: 'POST',
+                            data: post_data,
+                            success: function(result)
+                            {
+                               // alert(result);
+                                $('body').html(result);
+                            }
+                        });
+
+                return false;
+                });
                 $(".edit").live('click', function() {
 
 
