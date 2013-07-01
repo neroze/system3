@@ -1,4 +1,5 @@
-
+<?php 
+$this->load->view('header');?>
                     <div class="span6">
                         <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-header">
@@ -6,10 +7,10 @@
                                 <h3 id="myModalLabel">Add New</h3>
                             </div>    <div class="modal-body">
                                 <?php
-                                echo form_open('client/payment_insert', array('method' => 'post', 'name' => ''));
+                                echo form_open('payment/payment_insert', array('method' => 'post', 'name' => ''));
                                 echo form_label('Title', 'Title');
 
-                                echo '<select name ="select" id="e1" class="select">';
+                                echo '<select name ="e1" id="e1" class="select">';
                                 foreach ($records as $reco) {
                                     ?>
                                     <option value='<?php echo $reco->id; ?>'><?php echo $reco->title;
@@ -47,7 +48,7 @@
                             <a class="brand">
                                 <div class="nav-collapse collapse">
                                     <div class="navbar-search pull-left">
-                                        <?php echo form_open('client/pay_search', array('method' => 'post', 'name' => 'search')); ?>
+                                        <?php echo form_open('payment/pay_search', array('method' => 'post', 'name' => 'search')); ?>
                                         <input type="text"  name="search" class="search-query" placeholder="Search" style="margin-left:-18px;"/>
                                     </div>
                                         <?php echo form_close(); ?>
@@ -60,7 +61,7 @@
 
 
 
-                    <table class="table" >
+                    <table class="table" id="table">
 
                         <tr href style="color: #fff;
                             background-color: #0088cc;
@@ -74,10 +75,10 @@
                             <td>Project_Id</td>
                         </tr>
                         <?php
-                        foreach ($record as $rec) {
-                            echo"<tr><td>";
-                            echo $rec->p_id . "" . "</td>";
-                            echo form_open("client/pupdatedata/$rec->p_id", array('method' => 'post', 'name' => 'update', 'id' => 'check'));
+                        foreach ($record as $rec) {?>
+                            <tr><td>
+                            <?php echo $rec->p_id . "" . "</td>";
+                            echo form_open("payment/pupdatedata/$rec->p_id", array('method' => 'post', 'name' => 'update', 'id' => 'check'));
                             echo "<td>";
                             echo $rec->project_title . "" . "<br/>";
                             echo "</div>";
@@ -104,7 +105,7 @@
                             echo'</div>';
 
                             echo '<div class="span4">';
-                            echo form_open('client/pdeletedata/' . $rec->p_id . "", array('method' => 'post'));
+                            echo form_open('payment/pdeletedata/' . $rec->p_id . "", array('method' => 'post'));
                             echo form_submit('delete', 'delete', 'class="delete btn"');
                             echo form_close();
                             echo '<div class="span4">';
@@ -119,40 +120,24 @@
         </div>
         <script>
             $(document).ready(function() {
-                $("#e1").select2();
-                $('.TextBox1').hide();
-                $('.TextBox2').hide();
-                $('.update').hide();
-                //var row=($(this).attr('id'));
-                // var row = ($('tr').length)-1;
                        $(".btn-primary").live('click',function(){
-                   var post_data=$('.modal-body').find('input').serialize();
-                   var select=$('select').val();
+                   var post_data=$('.modal-body').find('input,select').serialize();
+                  // var select=$('select').val();
                      $.ajax(
                         {
-                            url: "<?php echo site_url("client/payment_insert"); ?>",
+                            url: "<?php echo site_url("payment/payment_insert"); ?>",
                             type: 'POST',
-                            data: {post_data:post_data,select:select},
+                            data: post_data,
                             success: function(result)
                             {
                                // alert(result);
-                                $('body').html(result);
+                                $('#table tr:last').html(result);
                             }
                         });
 
                 return false;
                 });
-                $(".edit").live('click', function() {
-
-
-                    $('.edit').hide();
-                    $('.delete').hide();
-                    $(this).closest('tr').find('.amount').hide();
-                    $(this).closest('tr').find('.paid_date').hide();
-                    $(this).closest('tr').find('.update').show();
-                    $(this).closest('tr').find('.TextBox1').show();
-                    $(this).closest('tr').find('.TextBox2').show();
-                });
+                
             });
         </script>
     </body>

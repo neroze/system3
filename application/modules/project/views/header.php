@@ -24,7 +24,7 @@
         <script type="text/javascript" src="<?php echo base_url('js/bootstrap-affix.js') ?>"></script>
         <script type="text/javascript" src="<?php echo base_url('js/bootstrap-popover.js') ?>"></script>
         <script type="text/javascript" src="<?php echo base_url('js/select2.js') ?>"></script>
-        <script type="text/javascript" src="<?php echo base_url('js/client.js') ?>"></script>
+         <script type="text/javascript" src="<?php echo base_url('js/project.js') ?>"></script>
         <script src="<?php echo base_url('js/application.js') ?>"></script>
 
     </head>
