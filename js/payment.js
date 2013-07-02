@@ -1,5 +1,5 @@
  $(document).ready(function() {
-                $("#e1").select2();
+               // $("#e1").select2();
                 $('.TextBox1').hide();
                 $('.TextBox2').hide();
                 $('.update').hide();

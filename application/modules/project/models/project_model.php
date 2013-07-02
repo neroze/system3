@@ -23,7 +23,7 @@ class Project_Model extends CI_Model {
         $row = $query->row_array();
         if (empty($row)) {
             $this->db->insert('project', $data);
-            // return $query->result();
+             return $query->result();
         }
     }
 

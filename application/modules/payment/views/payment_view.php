@@ -7,7 +7,7 @@ $this->load->view('header');?>
                                 <h3 id="myModalLabel">Add New</h3>
                             </div>    <div class="modal-body">
                                 <?php
-                                echo form_open('payment/payment_insert', array('method' => 'post', 'name' => ''));
+                                echo form_open('payment/payment_insert', array('method' => 'post', 'name' => '','id'=>'myform'));
                                 echo form_label('Title', 'Title');
 
                                 echo '<select name ="e1" id="e1" class="select">';
@@ -121,6 +121,8 @@ $this->load->view('header');?>
         <script>
             $(document).ready(function() {
                        $(".btn-primary").live('click',function(){
+                           
+                     
                    var post_data=$('.modal-body').find('input,select').serialize();
                   // var select=$('select').val();
                      $.ajax(
@@ -128,16 +130,23 @@ $this->load->view('header');?>
                             url: "<?php echo site_url("payment/payment_insert"); ?>",
                             type: 'POST',
                             data: post_data,
+                            dataType:'json',
                             success: function(result)
                             {
-                               // alert(result);
-                                $('#table tr:last').html(result);
+                            // console.log(result);
+                                 var $tr = $('<tr/>');
+                                    $tr.append($('<td/>').html(result[0].p_id));
+                                    $tr.append($('<td/>').html(result[0].project_title));
+                                    $tr.append($('<td/>').html(result[0].amount));
+                                    $tr.append($('<td/>').html(result[0].paid_date));
+                                    $tr.append($('<td/>').html(result[0].pro_id));
+                                    $('.table tr:last').after($tr);
+                                    $('#myModal').modal('hide');
                             }
                         });
-
                 return false;
                 });
-                
+  
             });
         </script>
     </body>

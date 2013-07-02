@@ -32,8 +32,12 @@ class Payment_Model extends CI_Model {
             'amount' => $amount,
             'pro_id' => $project
         );
-            $this->db->insert('payment', $data);
-        
+        $this->db->insert('payment', $data);
+        $id = $this->db->insert_id();
+        $this->db->select('p_id,project.title as project_title,amount,paid_date,pro_id');
+        $this->db->join('project', 'payment.pro_id = project.id');
+        $query = $this->db->get_where('payment', array('p_id' => $id));
+        return  $query->result();
     }
 
 
