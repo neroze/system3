@@ -13,13 +13,9 @@ class Client extends MX_Controller {
     }
 
     public function client_insert() {
-        $this->form_validation->set_rules('firstname', 'Firstname', 'required');
-        $this->form_validation->set_rules('lastname', 'Lastname', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
         $this->load->model('client_model');
-        $this->client_model->cinsert();
-        $feed['record'] = $this->client_model->cgetdata();
-        $this->load->view('client_view', $feed);
+        $feed=$this->client_model->cinsert();
+        echo json_encode($feed);
     }
 
     public function cdeletedata($id) {

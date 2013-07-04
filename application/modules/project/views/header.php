@@ -24,7 +24,11 @@
         <script type="text/javascript" src="<?php echo base_url('js/bootstrap-affix.js') ?>"></script>
         <script type="text/javascript" src="<?php echo base_url('js/bootstrap-popover.js') ?>"></script>
         <script type="text/javascript" src="<?php echo base_url('js/select2.js') ?>"></script>
-         <script type="text/javascript" src="<?php echo base_url('js/project.js') ?>"></script>
+        <script>var baseurl="<?php echo site_url() ?>";</script>
+        <script type="text/javascript" src="<?php echo base_url('js/client.js') ?>"></script>
+        <script type="text/javascript" src="<?php echo base_url('js/project.js') ?>"></script>
+         <script type="text/javascript" src="<?php echo base_url('js/payment.js') ?>"></script>
+         
         <script src="<?php echo base_url('js/application.js') ?>"></script>
 
     </head>
@@ -33,7 +37,7 @@
         <div class="navbar navbar-inverse navbar-fixed-top" href style="width: 1346px;">
             <div class="navbar-inner">
                 <div class="container">
-                    <a href="http://localhost/system3/index.php/client"
+                    <a href="<?php echo base_url('index.php/client')?>"
                        href style="margin-left: -69px; color: #999; width: 420px; float: left; font-size: 21px;font-family: Helvetica Neue, Helvetica, Arial, sans-serif;text-decoration: none;margin-top: 10px;"
                        >3Hammers Attendance Management System</a>
 
@@ -47,7 +51,7 @@
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu" href style="  margin-left: 1147px; "><li>
-                                    <a href="http://localhost/attendence_system/index.php/auth/logout">Check Out</a></li>
+                                   <a href="<?php echo base_url('auth/logout')?>">Check Out</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -61,11 +65,10 @@
                 
                 <div class="span3 bs-docs-sidebar" style="margin-top: 54px;">
                     <ul class="nav nav-list bs-docs-sidenav">
-
-                       <li class="active"><a href=""><i class="icon-chevron-right"></i>MANAGE USER</a></li>
-                        <li><a href="http://localhost/system3/index.php/project"><i class="icon-chevron-right"></i>Project</a></li>
-                        <li ><a href="http://localhost/system3/index.php/payment"><i class="icon-chevron-right"></i>Payment</a></li>
-                        <li><a href="http://localhost/system3/index.php/client"><i class="icon-chevron-right"></i> Client</a></li>
+                         <li class="active"><a href=""><i class="icon-chevron-right"></i>MANAGE USER</a></li>
+                       <li><a href="<?php echo base_url('index.php/project')?>"><i class="icon-chevron-right"></i>Project</a></li>
+                        <li ><a href="<?php echo base_url('index.php/payment')?>"><i class="icon-chevron-right"></i>Payment</a></li>
+                        <li><a href="<?php echo base_url('index.php/client')?>"><i class="icon-chevron-right"></i> Client</a></li>
 
                     </ul>
                     

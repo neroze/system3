@@ -37,7 +37,13 @@ class Client_Model extends CI_Model {
         $row = $query->row_array();
         if (empty($row)) {
         $this->db->insert('client', $data);
+          $id = $this->db->insert_id();
+         $quer = $this->db->get_where('client', array('c_id' => $id));
+        return $quer->result();
         }
+//        $id = $this->db->insert_id();
+//         $quer = $this->db->get_where('payment', array('p_id' => $id));
+//        return $quer->result();
     }
     public function cupdate($id) {
         $firstname = $this->input->post('firstname');

@@ -1,4 +1,24 @@
 $(document).ready(function() {
+    var _val = "";
+    $('.search-query').live('keyup', function() {
+        _q = $(this).val();
+        $('#table tbody tr').each(function() {
+            var _tr = this;
+            $(this).find('td').each(function() {
+                _val += $(this).text() + '';
+            });
+            _val = _val.toLowerCase();
+            _data = _val.search(_q);
+            if (_data > -1) {
+                console.log('found here');
+                $(_tr).fadeIn();
+            } else {
+                $(_tr).fadeOut();
+                console.log('not found here');
+            }
+            _val = "";
+        });
+    });
 
                 $('.TextBox1').hide();
                 $('.TextBox2').hide();
@@ -51,6 +71,35 @@ $(document).ready(function() {
                         }
                     });
                         
+                });
+                
+                
+                $(".btn-primary").live('click',function(){
+                   var post_data=$('.modal-body').find('input').serialize();
+                     $.ajax(
+                        {
+                            url: baseurl+"/client/client_insert",
+                            type: 'POST',
+                            data: post_data,
+                            dataType:'json',
+                            success: function(result)
+                            {
+                              var $tr = $('<tr/>');
+                                    $tr.append($('<td/>').html(result[0].c_id));
+                                    $tr.append($('<td/>').html(result[0].firstname));
+                                    $tr.append($('<td/>').html(result[0].lastname));
+                                    $tr.append($('<td/>').html(result[0].email));
+                                    $tr.append($('<td/>').html(result[0].phnum));
+                                    $tr.append($('<td/>').html(result[0].address));
+                                    $tr.append($('<td/>').html(result[0].country));
+                                //  $tr.append($('<td/>').find('.edit').show());
+                                  //   $('.delete').show();
+                                    $('.table tr:last').after($tr);
+                                    $('#myModal').modal('hide');
+                            }
+                        });
+
+                return false;
                 });
 
             });

@@ -23,8 +23,13 @@ class Project_Model extends CI_Model {
         $row = $query->row_array();
         if (empty($row)) {
             $this->db->insert('project', $data);
-             return $query->result();
         }
+         $id = $this->db->insert_id();
+         $this->db->select('id,title,client.firstname AS client_firstname,client.lastname AS last, start,end,budget_amount,cl_id');
+        $this->db->join('client', 'project.cl_id = client.c_id');
+        $this->db->order_by('id');
+         $quer = $this->db->get_where('project', array('id' => $id));
+        return  $quer->result();
     }
 
     public function getdata() {

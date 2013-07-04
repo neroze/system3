@@ -1,5 +1,5 @@
 <?php 
-$this->load->view('header');?>
+$this->load->view('client/header');?>
                     <div class="span6">
                         <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-header">
@@ -7,25 +7,27 @@ $this->load->view('header');?>
                                 <h3 id="myModalLabel">Add New</h3>
                             </div>    <div class="modal-body">
                                 <?php
-                                echo form_open('payment/payment_insert', array('method' => 'post', 'name' => '','id'=>'myform'));
-                                echo form_label('Title', 'Title');
+                                echo form_open('', array('method' => 'post', 'name' => '','id'=>'myform'));
+                                echo form_label('Title', 'Title');?>
 
-                                echo '<select name ="e1" id="e1" class="select">';
-                                foreach ($records as $reco) {
+                                <select name ="e1" id="e1" class="select">
+                                <?php foreach ($records as $reco) {
                                     ?>
-                                    <option value='<?php echo $reco->id; ?>'><?php echo $reco->title;
-                            }
-                                ?></option>
-                                <?php
-                                echo '</select>';
-                                echo form_label('Paid_Date', 'paid_date');
-                                echo form_input('paid_date');
-                                echo form_label('Amount', 'amount');
+                                    <option value='<?php echo $reco->id; ?>'><?php echo $reco->title;}?></option>
+                                </select>
+                                <?php echo form_label('Paid_Date', 'paid_date');?>
+                                <div id="datetimepick" class="input-append date">
+                               <?php echo form_input('paid_date');?>
+                                 <span class="add-on" >
+                                <i class="icon-time"></i>
+                                </span>
+                                </div>
+                                <?php echo form_label('Amount', 'amount');
                                 echo form_input('amount');
-                                echo '</div>';
+                              
                                 echo '<div class="modal-footer">';
                                 echo form_submit('submit', 'submit', 'class="btn btn-primary"');
-
+                                  echo '</div>';
                                 echo form_close();
                                 ?>
                             </div>
@@ -62,7 +64,7 @@ $this->load->view('header');?>
 
 
                     <table class="table" id="table">
-
+<thead>
                         <tr href style="color: #fff;
                             background-color: #0088cc;
                             font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -73,84 +75,61 @@ $this->load->view('header');?>
                             <td>Amount</td>
                             <td>Paid_Date</td>
                             <td>Project_Id</td>
-                        </tr>
+                        </tr
+</thead>
                         <?php
                         foreach ($record as $rec) {?>
-                            <tr><td>
+                         <tbody>   <tr><td>
                             <?php echo $rec->p_id . "" . "</td>";
                             echo form_open("payment/pupdatedata/$rec->p_id", array('method' => 'post', 'name' => 'update', 'id' => 'check'));
                             echo "<td>";
-                            echo $rec->project_title . "" . "<br/>";
-                            echo "</div>";
-                            "</td>";
-                            echo "<td><div class='amount'>";
-                            echo $rec->amount . "" . "<br/>";
-                            echo "</div>";
-                            echo form_input('amount', $rec->amount, 'class="TextBox1 input-small"');
-                            "</td>";
-                            echo "<td><div class='paid_date'>";
-                            echo $rec->paid_date . "   " . "<br/>";
-                            echo '</div>';
-                            echo form_input('paid_date', $rec->paid_date, 'class="TextBox2 input-small"');
-                            echo "</td>";
-                            echo "<td>";
-                            echo '<div class="span8">';
-                            echo '<div class="row-fluid">';
-                            echo '<div class="span4">';
-                            echo $rec->pro_id . "";
-                            echo '</div>';
-                            echo '<div class="span4">';
-                            echo form_submit('update', 'update', 'class="update btn"');
-                            echo form_close();
-                            echo'</div>';
+                            echo $rec->project_title . "" . "<br/>";?>
+                            </div>
+                            </td>
+                            <td><div class="amount">
+                            <?php echo $rec->amount . "" . "<br/>";?>
+                            </div>
+                            
+                            <?php echo form_input('amount', $rec->amount, 'class="TextBox1 input-small"');?>
+                           
+                            </td>
+                            <td><div class='paid_date'>
+                                    
+                            <?php 
+                            echo $rec->paid_date . "   " . "<br/>";?>
+                            </div>
+                            <div id="datetimepicker" class="input-append date">
+                            <?php     
+                            echo form_input('paid_date', $rec->paid_date, 'class="TextBox2 input-small"');?>
+                            <span class="add-on on" >
+                            <i class="icon-time"></i>
+                            </span></div>
+                            </td>
+                            <td>
+                            <div class="span8">
+                            <div class="row-fluid">
+                            <div class="span4">
+                            <?php echo $rec->pro_id . "";?>
+                            </div>
+                            <div class="span4">
+                            <?php echo form_submit('update', 'update', 'class="update btn"');
+                            echo form_close();?>
+                            </div>
 
-                            echo '<div class="span4">';
+                            <div class="span4">
+                             <?php
                             echo form_open('payment/pdeletedata/' . $rec->p_id . "", array('method' => 'post'));
                             echo form_submit('delete', 'delete', 'class="delete btn"');
-                            echo form_close();
-                            echo '<div class="span4">';
-                            echo form_submit('edit', 'edit', 'class="edit btn"');
-                            echo'</div>';
-                            echo " </td> </tr></div></div>";
-                        }
-                        ?> 
+                            echo form_close();?>
+                            <div class="span4">
+                            <?php
+                             echo form_submit('edit', 'edit', 'class="edit btn"');?>
+                            </div></div></div>
+                            </td> </tr></tbody>
+                        <?php }?>
                     </table>
                 </div>
             </div>
         </div>
-        <script>
-            $(document).ready(function() {
-                       $(".btn-primary").live('click',function(){
-                           
-                     
-                   var post_data=$('.modal-body').find('input,select').serialize();
-                  // var select=$('select').val();
-                     $.ajax(
-                        {
-                            url: "<?php echo site_url("payment/payment_insert"); ?>",
-                            type: 'POST',
-                            data: post_data,
-                            dataType:'json',
-                            success: function(result)
-                            {
-                            // console.log(result);
-                                 var $tr = $('<tr/>');
-                                    $tr.append($('<td/>').html(result[0].p_id));
-                                    $tr.append($('<td/>').html(result[0].project_title));
-                                    $tr.append($('<td/>').html(result[0].amount));
-                                    $tr.append($('<td/>').html(result[0].paid_date));
-                                    $tr.append($('<td/>').html(result[0].pro_id));
-                                    $('.table tr:last').after($tr);
-                                    $('#myModal').modal('hide');
-                            }
-                        });
-                return false;
-                });
-  
-            });
-        </script>
     </body>
 </html>
-
-
-

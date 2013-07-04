@@ -18,23 +18,7 @@ class Payment extends MX_Controller {
     public function payment_insert() {
         $this->load->model('payment_model');
       $feed= $this->payment_model->pinsert();
-      // $feed['result'] = $this->payment_model->pgetdata();
       echo json_encode($feed);
-//     
-//        foreach ($feed as $val )
-//        {
-//            echo $val;
-////                    ->p_id;
-////            echo $val->project_title;
-////             echo $val->paid_date;
-////            echo $val->amount;
-////           
-////            echo $val->pro_id;
-//        }
-//        $this->load->module('project');
-//        $this->load->model('project_model');
-//        $feed['records'] = $this->project_model->getdata();
-//        $this->load->view('payment_view', $feed);
     }
 
     public function pdeletedata($id) {

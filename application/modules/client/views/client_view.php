@@ -65,7 +65,7 @@
 
                     <table class="table" >
 
-                        <tr href style="color: #fff;
+                 <thead>       <tr href style="color: #fff;
                             background-color: #0088cc;
                             font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
                             height: 39px;">
@@ -79,9 +79,11 @@
                             <td>Address</td>
                             <td>Country</td>
                         </tr>
+                 </thead>
                         <?php
-                        foreach ($record as $rec) {
-                            echo"<tr><td>";
+                        foreach ($record as $rec) {?>
+                    <tbody><tr><td>
+                            <?php
                             echo $rec->c_id . "" . "</td>";
                             echo form_open("client/cupdatedata/$rec->c_id", array('method' => 'post', 'name' => 'update', 'id' => 'check'));
                             echo "<td><div class='firstname'>";
@@ -130,35 +132,15 @@
                             echo form_submit('delete', 'delete', 'class="delete btn"');
                             echo form_close();
                              echo '<div class="span4">';
-                            echo form_submit('edit', 'edit', 'class="edit btn"');
-                            echo'</div>';
-                            echo " </td> </tr></div></div>";
-                        }
+                            echo form_submit('edit', 'edit', 'class="edit btn"');?>
+                            </div>
+                            </td> </tr></div></div></tbody>
+                     <?php   }
                         ?> 
                     </table>
                 </div>
             </div>
         </div>
-        <script>
-            $(document).ready(function() {
-            $(".btn-primary").live('click',function(){
-                   var post_data=$('.modal-body').find('input').serialize();
-                     $.ajax(
-                        {
-                            url: "<?php echo site_url("client/client_insert"); ?>",
-                            type: 'POST',
-                            data: post_data,
-                            success: function(result)
-                            {
-                               // alert(result);
-                                $('body').html(result);
-                            }
-                        });
-
-                return false;
-                });
-                });
-        </script>
     </body>
 </html>
 
