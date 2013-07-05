@@ -63,6 +63,9 @@ class Client_Model extends CI_Model {
         );
         $this->db->where('c_id', $id);
         $this->db->update('client', $data);
+        $this->db->select('firstname,lastname,email,phnum,address,country');
+        $query = $this->db->get_where('client', array('c_id' => $id));
+        return  $query->result();
     }
        public function cl_search($match = "default") {
         $this->db->select('*');

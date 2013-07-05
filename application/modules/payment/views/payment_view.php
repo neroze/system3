@@ -59,10 +59,6 @@ $this->load->view('client/header');?>
 
                 </div>
                 <div class="span9" style="margin-top: -10px;">
-
-
-
-
                     <table class="table" id="table">
 <thead>
                         <tr href style="color: #fff;
@@ -75,15 +71,19 @@ $this->load->view('client/header');?>
                             <td>Amount</td>
                             <td>Paid_Date</td>
                             <td>Project_Id</td>
-                        </tr
-</thead>
+                            <td>Action</td>
+                        </tr>
+    </thead>
                         <?php
                         foreach ($record as $rec) {?>
                          <tbody>   <tr><td>
-                            <?php echo $rec->p_id . "" . "</td>";
-                            echo form_open("payment/pupdatedata/$rec->p_id", array('method' => 'post', 'name' => 'update', 'id' => 'check'));
-                            echo "<td>";
-                            echo $rec->project_title . "" . "<br/>";?>
+                                
+                            <?php echo $rec->p_id . "" ;?>
+                           <?php echo form_input('id', $rec->p_id, 'class="TextBox input-small"');?>
+                                 </td>;
+                            <td>
+                            <?php
+                             echo $rec->project_title . "" . "<br/>";?>
                             </div>
                             </td>
                             <td><div class="amount">
@@ -98,7 +98,7 @@ $this->load->view('client/header');?>
                             <?php 
                             echo $rec->paid_date . "   " . "<br/>";?>
                             </div>
-                            <div id="datetimepicker" class="input-append date">
+                            <div id="datetime" class="input-append date">
                             <?php     
                             echo form_input('paid_date', $rec->paid_date, 'class="TextBox2 input-small"');?>
                             <span class="add-on on" >
@@ -106,26 +106,23 @@ $this->load->view('client/header');?>
                             </span></div>
                             </td>
                             <td>
-                            <div class="span8">
-                            <div class="row-fluid">
-                            <div class="span4">
+                            
                             <?php echo $rec->pro_id . "";?>
-                            </div>
-                            <div class="span4">
-                            <?php echo form_submit('update', 'update', 'class="update btn"');
-                            echo form_close();?>
-                            </div>
-
-                            <div class="span4">
+                            
+                            </td>
+                            <td>
+                         <div class="span3">
                              <?php
-                            echo form_open('payment/pdeletedata/' . $rec->p_id . "", array('method' => 'post'));
-                            echo form_submit('delete', 'delete', 'class="delete btn"');
-                            echo form_close();?>
-                            <div class="span4">
+                            echo form_submit('delete', 'delete', 'class="delete btn"');?>
+                            </div>
+                            <div class="span2">
                             <?php
                              echo form_submit('edit', 'edit', 'class="edit btn"');?>
-                            </div></div></div>
-                            </td> </tr></tbody>
+                            </div>
+                            <div class="span4">
+                            <?php echo form_submit('update', 'update', 'class="update btn"');?>
+                            </div></td>
+                </tr></tbody>
                         <?php }?>
                     </table>
                 </div>

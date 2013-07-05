@@ -51,6 +51,9 @@ class Payment_Model extends CI_Model {
         );
         $this->db->where('p_id', $id);
         $this->db->update('payment', $data);
+        $this->db->select('amount,paid_date');
+        $query = $this->db->get_where('payment', array('p_id' => $id));
+        return  $query->result();
     }
 
          public function p_search($match = "default") {

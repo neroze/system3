@@ -87,6 +87,7 @@
             <td>Date_start</td>
             <td>Date_end</td>
             <td>Total_Budget</td>
+            <td>Action</td>
             <td></td>
 
         </tr>
@@ -96,10 +97,11 @@
             <tbody>
                 <tr><td>
             <?php
-            echo $rec->id . "" . "</td>";
-            echo form_open("project/pro_updatedata/$rec->id", array('method' => 'post', 'name' => 'update', 'id' => 'check'));
-            echo "<td><div class='title'>";
-            echo $rec->title . "" . "<br/>";
+            echo $rec->id ;?>
+             <?php echo form_input('id', $rec->id, 'class="TextBox input-small"');?>
+                    </td>
+            <td><div class='title'>
+            <?php echo $rec->title . "" . "<br/>";
             echo '(';
             echo $rec->client_firstname . "" . "", $rec->last . "" . "";
             echo ')';
@@ -125,27 +127,24 @@
                 <i class="icon-time"></i>
             </span></div>
     </td>
+    <td><div class="budget">
     <?php
-    echo "<td><div class='end'>";
-    echo $rec->budget_amount . "" . "<br/>";
-    echo '</div>';
-    echo form_input('budget_amount', $rec->budget_amount, 'class="TextBox3 input-small"');
-    "</td>";
-    echo "<td>";
-    echo '<div class="span8">';
-    echo '<div class="row-fluid">';
-    echo '<div class="span4">';
-    echo form_submit('update', 'update', 'class="update btn"');
-    echo form_close();
-    echo'</div>';
-    echo '<div class="span4">';
-    echo form_submit('edit', 'edit', 'class="edit btn"');
-    echo'</div>';
-    echo '<div class="span4">';
-    echo form_open('project/deletedata/' . $rec->id, array('method' => 'post'));
-    echo form_submit('delete', 'delete', 'class="delete btn"');
-    echo form_close();?>
-     </td></div></div></tr>
+    echo $rec->budget_amount . "" . "<br/>";?>
+    </div>
+    <?php echo form_input('budget_amount', $rec->budget_amount, 'class="TextBox4 input-small"');
+    "</td>";?>
+    <td>
+    <div class="span4">
+                             <?php
+                            echo form_submit('delete', 'delete', 'class="delete btn"');?>
+                            </div>
+                            <div class="span4">
+                            <?php
+                             echo form_submit('edit', 'edit', 'class="edit btn"');?>
+                            </div>
+                            <div class="span4">
+                            <?php echo form_submit('update', 'update', 'class="update btn"');?>
+                            </div> </tr>
 <?php }
 ?>
 </tbody>

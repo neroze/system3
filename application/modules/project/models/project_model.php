@@ -59,6 +59,9 @@ class Project_Model extends CI_Model {
         );
         $this->db->where('id', $id);
         $this->db->update('project', $data);
+         $this->db->select('title,start,end,budget_amount');
+        $query = $this->db->get_where('project', array('id' => $id));
+        return  $query->result();
     }
 
       public function search($match = "default") {

@@ -78,15 +78,17 @@
                             <td>Ph-num</td>
                             <td>Address</td>
                             <td>Country</td>
+                            <td>Action</td>
                         </tr>
                  </thead>
                         <?php
                         foreach ($record as $rec) {?>
                     <tbody><tr><td>
                             <?php
-                            echo $rec->c_id . "" . "</td>";
-                            echo form_open("client/cupdatedata/$rec->c_id", array('method' => 'post', 'name' => 'update', 'id' => 'check'));
-                            echo "<td><div class='firstname'>";
+                            echo $rec->c_id ;?>
+                            <?php echo form_input('id', $rec->c_id, 'class="TextBox input-small"');?>
+                            <td><div class='firstname'>
+                            <?php
                             echo $rec->firstname . "" . "";
                             echo '</div>';
                             echo form_input('firstname', $rec->firstname, 'class="TextBox1 input-small"');
@@ -109,32 +111,31 @@
                             echo "<td><div class='address'>";
                             echo $rec->address . "" . "";
                             echo'</div>';
-                            echo form_input('address', $rec->address, 'class="TextBox5 input-small"');
-                            "</td>";
+                            echo form_input('address', $rec->address, 'class="TextBox5 input-small"');?>
+                            </td>
 
 
-                            echo "<td>";
-                            echo '<div class="span8">';
-                            echo '<div class="row-fluid">';
-                            echo'<div class="span12">';
-                            echo '<div class="country">';
-                            echo $rec->country . "" . "";
-                            echo '</div>';
-                            echo form_input('country', $rec->country, 'class="TextBox6 input-small"');
-                            echo'</div>';
-                            echo '<div class="span4">';
-                            echo form_submit('update', 'update', 'class="update btn"');
-                            echo form_close();
-                            echo'</div>';
-                           
-                            echo '<div class="span4">';
-                            echo form_open('client/cdeletedata/' . $rec->c_id, array('method' => 'post'));
-                            echo form_submit('delete', 'delete', 'class="delete btn"');
-                            echo form_close();
-                             echo '<div class="span4">';
-                            echo form_submit('edit', 'edit', 'class="edit btn"');?>
+                            <td>
+                            <div class="country">
+                            <?php
+                            echo $rec->country . "" . "";?>
                             </div>
-                            </td> </tr></div></div></tbody>
+                            <?php echo form_input('country', $rec->country, 'class="TextBox6 input-small"');?>
+                            
+                                 <td>
+                            <div class="span5">
+                             <?php
+                            echo form_submit('delete', 'delete', 'class="delete btn"');?>
+                            </div>
+                            <div class="span4">
+                            <?php
+                             echo form_submit('edit', 'edit', 'class="edit btn"');?>
+                            </div>
+                            <div class="span4">
+                            <?php echo form_submit('update', 'update', 'class="update btn"');?>
+                            </div>
+    </td>
+                           </tbody>
                      <?php   }
                         ?> 
                     </table>

@@ -24,21 +24,13 @@ class Payment extends MX_Controller {
     public function pdeletedata($id) {
         $this->load->model('payment_model');
         $this->payment_model->pdelete($id);
-        $feed['record'] = $this->payment_model->pgetdata();
-         $this->load->module('project');
-        $this->load->model('project_model');
-        $feed['records'] = $this->project_model->getdata();
-        $this->load->view('payment_view', $feed);
     }
 
     public function pupdatedata($id) {
         $this->load->model('payment_model');
-        $this->payment_model->pupdate($id);
-        $feed['record'] = $this->payment_model->pgetdata();
-         $this->load->module('project');
-        $this->load->model('project_model');
-        $feed['records'] = $this->project_model->getdata();
-        $this->load->view('payment_view', $feed);
+        $feed=$this->payment_model->pupdate($id);
+        echo json_encode($feed);
+        //echo $id;
     }
 
 
