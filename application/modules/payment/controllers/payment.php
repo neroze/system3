@@ -7,12 +7,19 @@ class Payment extends MX_Controller {
     }
 
     public function index() {
+         if ($this->ion_auth->logged_in()) {
         $this->load->model('payment_model');
         $feed['record'] = $this->payment_model->pgetdata();
         $this->load->module('project');
         $this->load->model('project_model');
         $feed['records'] = $this->project_model->getdata();
         $this->load->view('payment_view', $feed);
+         }
+          else
+         {
+              $this->session->set_flashdata('message', $this->ion_auth->errors());
+            redirect('auth/login', 'refresh');
+         }
     }
 
     public function payment_insert() {

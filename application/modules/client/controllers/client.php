@@ -7,9 +7,16 @@ class Client extends MX_Controller {
     }
 
     public function index() {
+        if ($this->ion_auth->logged_in()) {
         $this->load->model('client_model');
         $feed['record'] = $this->client_model->cgetdata();
         $this->load->view('client_view', $feed);
+         }
+         else
+         {
+              $this->session->set_flashdata('message', $this->ion_auth->errors());
+            redirect('auth/login', 'refresh');
+         }
     }
 
     public function client_insert() {

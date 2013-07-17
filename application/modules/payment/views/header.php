@@ -25,8 +25,7 @@
         <script type="text/javascript" src="<?php echo base_url('js/bootstrap-popover.js') ?>"></script>
         <script type="text/javascript" src="<?php echo base_url('js/select2.js') ?>"></script>
         <script>var baseurl="<?php echo site_url() ?>";</script>
-        <script type="text/javascript" src="<?php echo base_url('js/client.js') ?>"></script>
-        <script type="text/javascript" src="<?php echo base_url('js/project.js') ?>"></script>
+       
          <script type="text/javascript" src="<?php echo base_url('js/payment.js') ?>"></script>
          
         <script src="<?php echo base_url('js/application.js') ?>"></script>
@@ -34,7 +33,7 @@
     </head>
 
     <body data-spy="scroll" data-target=".bs-docs-sidebar">
-        <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
           <div class="nav-collapse collapse">
@@ -58,12 +57,11 @@
         </div>
       </div>
     </div>
-<div class="bodywidth">
+        <div class="bodywidth">
         <div class="container-fluid">
             <div class="row-fluid">
                 
-                <div class="span3 bs-docs-sidebar" style="margin-top: 81px;">
-                    
+                <div class="span3 bs-docs-sidebar" style="margin-top: 82px;">
                     <ul class="nav nav-list bs-docs-sidenav">
                          <li class="active"><a href=""><i class="icon-chevron-right"></i>MANAGE USER</a></li>
                        <li><a href="<?php echo base_url('index.php/project')?>"><i class="icon-chevron-right"></i>Project</a></li>

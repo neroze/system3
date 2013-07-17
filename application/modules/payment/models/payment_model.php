@@ -26,6 +26,7 @@ class Payment_Model extends CI_Model {
         $amount = $this->input->post('amount');
         $paid_date = $this->input->post('paid_date');
         $project = $this->input->post('e1');
+        
 
         $data = array(
             'paid_date' => $paid_date,

@@ -64,14 +64,13 @@ class Project_Model extends CI_Model {
         return  $query->result();
     }
 
-      public function search($match = "default") {
-        $this->db->select('id,title,client.firstname AS client_firstname,client.lastname AS last, start,end,budget_amount,cl_id');
-        $this->db->from('project');
-        $this->db->like('title', $match);
-        $this->db->join('client', 'project.cl_id = client.c_id');
-        $query = $this->db->get();
-        return $query->result();
-    } 
+ public function pro_detail($id)
+         {
+       $this->db->select('project.title as Tit,amount,paid_date');
+       $this->db->join('project', 'payment.pro_id = project.id');
+         $quer = $this->db->get_where('payment', array('pro_id' => $id));
+            return  $quer->result();
+         }
 }
 
 ?>
