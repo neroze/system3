@@ -30,7 +30,7 @@ $this->load->view('header');?>
                                 echo form_input('amount');
                               
                                 echo '<div class="modal-footer">';
-                                echo form_submit('submit', 'submit', 'class="btn btn-primary"');
+                                echo form_submit('submit', 'submit', 'class="payment btn btn-primary"');
                                   echo '</div>';
                                 
                                 ?>

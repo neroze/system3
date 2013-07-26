@@ -3,23 +3,25 @@
 class Project extends MX_Controller {
 
     function __construct() {
+        if ($this->ion_auth->logged_in()) {
         parent::__construct();
-    }
-
-    public function index() {
-         if ($this->ion_auth->logged_in()) {
-        $this->load->model('project_model');
-        $feed['record'] = $this->project_model->getdata();
-        $this->load->module('client');
-        $this->load->model('client_model');
-        $feed['records'] = $this->client_model->cgetdata();
-        $this->load->view('project_view', $feed);
          }
          else
          {
               $this->session->set_flashdata('message', $this->ion_auth->errors());
             redirect('auth/login', 'refresh');
          }
+    }
+
+    public function index() {
+         
+        $this->load->model('project_model');
+        $feed['record'] = $this->project_model->getdata();
+        $this->load->module('client');
+        $this->load->model('client_model');
+        $feed['records'] = $this->client_model->cgetdata();
+        $this->load->view('project_view', $feed);
+        
     }
 
     public function pro_insert() {

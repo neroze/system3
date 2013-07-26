@@ -3,20 +3,22 @@
 class Client extends MX_Controller {
 
     function __construct() {
-        parent::__construct();
-    }
-
-    public function index() {
         if ($this->ion_auth->logged_in()) {
-        $this->load->model('client_model');
-        $feed['record'] = $this->client_model->cgetdata();
-        $this->load->view('client_view', $feed);
-         }
+        parent::__construct();
+        }
          else
          {
               $this->session->set_flashdata('message', $this->ion_auth->errors());
             redirect('auth/login', 'refresh');
          }
+    }
+
+    public function index() {
+        
+        $this->load->model('client_model');
+        $feed['record'] = $this->client_model->cgetdata();
+        $this->load->view('client_view', $feed);
+         
     }
 
     public function client_insert() {

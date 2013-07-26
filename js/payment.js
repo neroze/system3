@@ -51,9 +51,8 @@ $(document).ready(function() {
        
         
         
-        $(".btn-primary").on('click', function() {
-            $('.modal-body').find('input').each(function() {
-     if (($(this).val()).length!== 0) {
+        $(".payment").on('click', function() {
+           
             var post_data = $('.modal-body').find('input,select').serialize();
           
             $.ajax(
@@ -103,10 +102,9 @@ $(document).ready(function() {
                     });
             
             return false;
+        
             
-            }
-            else{alert('empty fields');
-            return false;}
+           
         });
        
        
@@ -174,4 +172,4 @@ $(document).ready(function() {
     });
 
 
-            });
+            

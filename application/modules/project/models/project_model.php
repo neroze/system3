@@ -71,6 +71,7 @@ class Project_Model extends CI_Model {
          $quer = $this->db->get_where('payment', array('pro_id' => $id));
             return  $quer->result();
          }
+       
 }
 
 ?>

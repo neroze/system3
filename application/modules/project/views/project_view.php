@@ -6,7 +6,7 @@
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <h3 id="myModalLabel">Add New</h3>
-        </div>    <div class="modal-body">
+        </div>    <div class="modal-body addproject">
             <div class="span2"></div>
             <div class="span4">
             <?php
@@ -42,7 +42,7 @@
         </div>
         <div class="modal-footer">
             <?php
-            echo form_submit('submit', 'submit', 'class="btn btn-primary"');
+            echo form_submit('submit', 'submit', 'class="project btn btn-primary"');
 
             ?>
         </div>
@@ -133,7 +133,7 @@
 <!--                             <i class="prodetail icon-book" alt="detail"></i>-->
                          
                      <a href="#myModa" class="btn prodetail" data-toggle="modal">Details</a>
-                            
+                     <a href="<?php echo base_url('index.php/task/index/'.$rec->id)?>" class="btn">Task</a>
                          
                              </tr>
 <?php }
@@ -155,6 +155,7 @@
                    <td>Amount Paid</td>
                    <td>Paid Date</td>
                 </tr>
+                <tbody></tbody>
             </table>
             <div class="modal-footer"></div>
         </div>

@@ -65,7 +65,7 @@
              type:'POST',
              dataType:'json',
              success:function(result){
-              
+             
                $.each(result,function(i, val){
                    var $tr = $('<tr/>');
                    $tr.append($('<td/>').html(val.Tit));
@@ -83,10 +83,10 @@
           return false;
         });
         
-        $(".btn-primary").on('click', function() {
-            $('.modal-body').find('input').each(function() {
-     if (($(this).val()).length!== 0) {
-            var post_data = $('.modal-body').find('input,select').serialize();
+        $(".project").live('click', function() {
+//            $('.modal-body').find('input').each(function() {
+//     if (($(this).val()).length!== 0) {
+            var post_data = $('.addproject').find('input,select').serialize();
             $.ajax(
                     {
                         url: baseurl + "/project/pro_insert",
@@ -95,10 +95,13 @@
                         dataType: 'json',
                         success: function(result)
                         {
+                         var   project_id = result[0].id;
+                        var link= baseurl +"/task/index/" +project_id;
                             var del= '<i class="delete icon-trash"></i>'; 
                            var update ='<i class="update icon-check"></i>';
                            var edit='<i class="edit icon-edit"></i>  ';
                            var detail='  <a href="#myModa" class="btn prodetail" data-toggle="modal">Details</a>';
+                           var task='  <a href="'+link+'" class="btn">Task</a>';
                           var title='<input type="text" name="title" class="TextBox1 input-small" value="'+result[0].title+'" >';
                         var start='<div id="datetimepicker" class="input-append date"><input type="text" name="start_date" class="TextBox2 input-small"" value="'+result[0].start+'">\n\
                            <span class="add-on on" ><i class="icon-time"></i></span></div>';
@@ -112,7 +115,7 @@
                         var end2='<div class="end">'+result[0].end+'</div>';
                         var budget_amount2='<div class="budget">'+result[0].budget_amount+'</div>';
                             var $tr = $('<tr/>');
-                            var key= $('.count tr').length;
+                            var key= $('.cou tr').length;
                          var akey=parseInt(key)+parseInt(1);   
                         $tr.append($('<td/>').html(akey));
                         
@@ -131,7 +134,8 @@
                             $tr.find('td').eq(5).append(del);
                             $tr.find('td').eq(5).append(edit);
                             $tr.find('td').eq(5).append(detail);
-                            $('.table tr:last').after($tr);
+                            $tr.find('td').eq(5).append(task);
+                            $('.table .cou tr:last').after($tr);
                             $('#myModal').modal('hide');
                             
                       $tr.closest('tr').find('.TextBox').hide();
@@ -145,12 +149,12 @@
                     });
 
             return false;
-     }
-     else{alert("empty fields");
-     return false;}
+//     }
+//     else{alert("empty fields");
+//     return false;}
             });
             
-        });
+        
         
         $('.update').live('click',function(){
     var update=$(this);
@@ -226,8 +230,7 @@
     $("#e1").select2();
     
      $(".pay").on('click', function() {
-            $('.another').find('input').each(function() {
-     if (($(this).val()).length!== 0) {
+       
             var post_data = $('.another').find('input,select').serialize();
           
             $.ajax(
@@ -246,13 +249,11 @@
             
             return false;
             
-            }
-            else{alert('empty fields');
-            return false;}
+     });
         });
        
        
        
-        });
+     
 
-            });
+            
