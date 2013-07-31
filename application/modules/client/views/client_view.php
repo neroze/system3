@@ -5,48 +5,65 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3 id="myModalLabel">Add New</h3>
-    </div>   
+    </div> 
+      <form>
     <div class="modal-body">
-        <div class="span2"></div>
-        <div class="span4">
+      
             <?php
-            echo form_label('Firstname', 'firstname');
+            echo form_label('Firstname*', 'firstname');
 
-            echo form_input('firstname');
-            echo form_label('Lastname', 'lastname');
+            echo form_input('firstname','','class="required"');
+            echo form_label('Lastname*', 'lastname');
 
-            echo form_input('lastname');
-            echo form_label('Email', 'email');
-            echo form_input('email');
+            echo form_input('lastname','','class= "required"');
+            echo form_label('Email*', 'email');
+            echo form_input('email','','class="required"');
             echo form_label('Company', 'Team');
             echo form_input('Team');
             echo form_label('Address', 'address');
             echo form_input('address');
             echo form_label('City', 'city');
             echo form_input('city');
-            echo form_label('Country', 'country');
-            echo form_input('country');
-            echo form_label('State/Province', 'state');
-            echo form_input('state');
-            echo form_label('Phone', 'phnum');
-            echo form_input('phnum');
-            echo form_label('Zip/Postal code', 'zip');
-            echo form_input('zip');
-            echo form_label('Client since', 'client_since');
+            echo form_label('Country*', 'country');?>
+            <select name ="country" id="e1" class="select">
+            <?php foreach ($country as $c) {?>
+                
+            
+            <option value="<?php echo $c->name;?>"><?php echo $c->name;} ?></option>
+            
+             </select>
+            <?php echo form_label('State/Province*', 'state');
+            echo form_input('state', '','class="required state"');
+            ?>
+        
+            <select name="state" id="e1" class="state1">
+            <?php foreach ($state as $s) {?>
+             <option value=""></option> 
+            <option value="<?php echo $s->name;?>"><?php echo $s->name;}?></option> 
+            </select>
+            <?php echo form_label('Phone*', 'phnum');
+            echo form_input('phnum','','class="required"');
+            echo form_label('Zip/Postal code*', 'zip');
+            echo form_input('zip','','class="required"');
+            echo form_label('Client since*', 'client_since');
             ?>
 
             <div id="datetimepick" class="input-append date">
-                <?php echo form_input('client_since'); ?>
+                <?php echo form_input('client_since','','class="required"'); ?>
                 <span class="add-on" >
                     <i class="icon-time"></i>
                 </span>
             </div>
-        </div>
-    </div>
+            
+        </div>    
+   
+    
     <div class="modal-footer">
         <?php echo form_submit('submit', 'submit', 'class="client btn btn-primary"');
         ?>
     </div>
+        </form>
+             
 </div>
 
 
@@ -133,9 +150,9 @@
             </div>
                         </td>
                         <td>
-                            <i class="update icon-check" alt="update"></i>
-                            <i class="delete icon-trash" alt="delete"></i>        
-                            <i class="edit icon-edit" alt="edit"></i> 
+                            <i class="update icon-check" alt="update" title="update"></i>
+                            <i class="delete icon-trash" alt="delete" title="delete"></i>        
+                            <i class="edit icon-edit" alt="edit" title="edit"></i> 
 
 
 

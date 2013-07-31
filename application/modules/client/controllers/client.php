@@ -17,6 +17,8 @@ class Client extends MX_Controller {
         
         $this->load->model('client_model');
         $feed['record'] = $this->client_model->cgetdata();
+        $feed['country']= $this->client_model->country();
+         $feed['state']= $this->client_model->state();
         $this->load->view('client_view', $feed);
          
     }

@@ -33,6 +33,11 @@
             format: 'yyyy-MM-dd',
             language: 'pt-BR'
         });
+        
+        
+           $('.close').on('click',function(){
+    $('.modal-body').find('input').val('');
+});
                 $(".edit").live('click', function() {
 
 
@@ -144,6 +149,7 @@
                       $tr.closest('tr').find('.TextBox3 ').hide();
                       $tr.closest('tr').find('.TextBox4 ').hide();
                       $tr.closest('tr').find('.on').hide(); 
+                      $('.modal-body').find('input').val('');
                       
                         }
                     });

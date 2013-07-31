@@ -64,6 +64,16 @@ class Client_Model extends CI_Model {
         
         return  $query->result();
     }
+    public function country(){
+       $this->db->select('name');
+       $query= $this->db->get('country');
+       return $query->result();
+    }
+     public function state(){
+       $this->db->select('name');
+       $query= $this->db->get('state');
+       return $query->result();
+    }
       
 }
 

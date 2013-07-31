@@ -34,6 +34,11 @@ $(document).ready(function() {
         language: 'pt-BR'
     });
          
+         $('.close').on('click',function(){
+    $('.modal-body').find('input').val('');
+});
+
+         
                 $(".edit").live('click', function() {
 
 
@@ -97,6 +102,8 @@ $(document).ready(function() {
                         $tr.closest('tr').find('.TextBox1').hide();
                         $tr.closest('tr').find('.TextBox2').hide();
                         $tr.closest('tr').find('.on').hide();
+                        
+                        $('.modal-body').find('input').val('');
                       
                         }
                     });
