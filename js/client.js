@@ -3,11 +3,11 @@ $(document).ready(function() {
 
 
 
-   
+
     var _val = "";
     $('.search-query').live('keyup', function() {
         _q = $(this).val();
-        $('#table tbody tr').each(function() {
+        $('.table tbody tr').each(function() {
             var _tr = this;
             $(this).find('td').each(function() {
                 _val += $(this).text() + '';
@@ -24,8 +24,10 @@ $(document).ready(function() {
             _val = "";
         });
     });
-    
-     $("#e1").select2();
+
+    $("#e1").select2();
+    $("#e2").select2();
+    $("#e3").select2();
     $('.TextBox').hide();
     $('.TextBox1').hide();
     $('.TextBox2').hide();
@@ -36,18 +38,32 @@ $(document).ready(function() {
     $('.TextBox7').hide();
     $('.on').hide();
     $('.state1').hide();
+    $('.state').hide();
+    $('#error').hide();
+    $('#error1').hide();
+    $('#error2').hide();
+    $('#error3').hide();
 
     $('.select').on('click', function() {
 
 
-        if ($(this).val() === 'United States' || $(this).val() === 'Australia') {
+        if ($(this).val() === 'United States') {
             $('.state1').show();
+            $('.state').hide();
+            $('.state2').hide();
+
+        }
+        else if ($(this).val() === 'Australia') {
+            $('.state2').show();
+            $('.state1').hide();
             $('.state').hide();
 
         }
-        else {
+        else
+        {
             $('.state').show();
             $('.state1').hide();
+            $('.state2').hide();
         }
 
     });
@@ -56,15 +72,16 @@ $(document).ready(function() {
 
     $('.close').on('click', function() {
         $('.modal-body').find('input').val('');
-        if ($('.select').val() === 'United States' || $('.select').val() === 'Australia') {
-            $('.state1').show();
-            $('.state').hide();
 
-        }
-        else {
-            $('.state').show();
-            $('.state1').hide();
-        }
+        $('.select').val('Australia');
+        $('.state2').show();
+        $('.state1').hide();
+        $('.state').hide();
+        $('#error').hide();
+        $('#error1').hide();
+        $('#error2').hide();
+        $('#error3').hide();
+
     });
 
     $('#datetimepick,#datetimepicker').datetimepicker({
@@ -98,91 +115,139 @@ $(document).ready(function() {
     });
 
 
-//   
-  $('form').validate();
-  $.error();
+
+
+
+
     $(".client").on('click', function() {
-        
-          
-           
-       
-            var post_data = $('form').find('input,select').serialize();
-           
-        $.ajax(
-                {
-                    url: baseurl + "/client/client_insert",
-                    type: 'POST',
-                    data: post_data,
-                    dataType: 'json',
-                    success: function(result)
+
+        var post_data = $('.modal-body').find('input,select').serialize();
+
+        if ($('#fname').val() === '')
+        {
+            $('#error').show();
+            $('#fname').on('blur', function() {
+                if ($('#fname').val() !== '') {
+                    $('#error').hide();
+                }
+                else {
+                    $('#error').show();
+                }
+            });
+        }
+        if ($('#lname').val() === '')
+        {
+            $('#error1').show();
+            $('#lname').on('blur', function() {
+                if ($('#lname').val() !== '') {
+                    $('#error1').hide();
+                }
+                else {
+                    $('#error1').show();
+                }
+            });
+        }
+        if (!((/^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i).test($('#email').val()))) {
+            $('#error2').show();
+            $('#email').on('blur', function() {
+               if (((/^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i).test($('#email').val())))  {
+                    $('#error2').hide();
+                }
+                else {
+                    $('#error2').show();
+                }
+            });
+        }
+        if ($('#client').val() === '') {
+            $('#error3').show();
+
+            $('#client').on('blur', function() {
+                if ($('#client').val() !== '') {
+                    $('#error3').hide();
+                }
+                else {
+                    $('#error3').show();
+                }
+            });
+        }
+        else
+            $.ajax(
                     {
-                        var $tr = $('<tr/>');
-                        var del = ' <i class="delete icon-trash"></i>  ';
-                        var update = '<i class="update icon-check"></i>';
-                        var edit = '<i class="edit icon-edit"></i>  ';
+                        url: baseurl + "/client/client_insert",
+                        type: 'POST',
+                        data: post_data,
+                        dataType: 'json',
+                        success: function(result)
+                        {
 
-                        var firstname = '<input type="text" name="firstname" class="TextBox1 input-small" value="' + result[0].firstname + '" >';
-                        var lastname = '<input type="text" name="lastname" class="TextBox2 input-small"" value="' + result[0].lastname + '">';
-                        var email = '<input type="text" name="email" class="TextBox3" value="' + result[0].email + '">';
-                        var phnum = '<input type="text" name="phnum" class="TextBox4 input-small" value="' + result[0].phnum + '" >';
-                        var zip = '<input type="text" name="zip" class="TextBox5 input-small" value="' + result[0].zip + '" >';
-                        var country = '<input type="text" name="country" class="TextBox6 input-small" value="' + result[0].country + '" >';
-                        var client_since = '<input type="text" name="address" class="TextBox7 input-small" value="' + result[0].client_since + '" >';
-                        var id = '<input type="text" name="id" class="TextBox input-small" value="' + result[0].c_id + '" >';
+                            var $tr = $('<tr/>');
+                            var del = ' <i class="delete icon-trash"></i>  ';
+                            var update = '<i class="update icon-check"></i>';
+                            var edit = '<i class="edit icon-edit"></i>  ';
 
-                        var firstname1 = '<div class="firstname">' + result[0].firstname + '</div>';
-                        var lastname1 = '<div class="lastname">' + result[0].lastname + '</div>';
-                        var email1 = '<div class="email">' + result[0].email + '</div>';
-                        var zip1 = '<div class="zip">' + result[0].zip + '</div>';
-                        var phnum1 = '<div class="phnum">' + result[0].phnum + '</div>';
-                        var client_since1 = '<div class="address">' + result[0].client_since + '</div>';
-                        var country1 = '<div class="country">' + result[0].country + '</div>';
+                            var firstname = '<input type="text" name="firstname" class="TextBox1 input-small" value="' + result[0].firstname + '" >';
+                            var lastname = '<input type="text" name="lastname" class="TextBox2 input-small"" value="' + result[0].lastname + '">';
+                            var email = '<input type="text" name="email" class="TextBox3" value="' + result[0].email + '">';
+                            var country = '<input type="text" name="country" class="TextBox6 input-small" value="' + result[0].country + '" >';
+                            var client_since = '<input type="text" name="address" class="TextBox7 input-small" value="' + result[0].client_since + '" >';
+                            var id = '<input type="text" name="id" class="TextBox input-small" value="' + result[0].c_id + '" >';
 
-                        var key = $('.table tbody tr').length;
-                        var akey = parseInt(key) + parseInt(1);
-                        $tr.append($('<td/>').html(akey));
-                        $tr.find('td').eq(0).append(id);
-                        $tr.append($('<td/>').html(firstname1));
-                        $tr.find('td').eq(1).append(firstname);
-                        $tr.find('td').eq(1).append(lastname1);
-                        $tr.find('td').eq(1).append(lastname);
-                        $tr.append($('<td/>').html(email1));
-                        $tr.find('td').eq(2).append(email);
-                        $tr.append($('<td/>').html(phnum1));
-                        $tr.find('td').eq(3).append(phnum);
-                        $tr.append($('<td/>').html(zip1));
-                        $tr.find('td').eq(4).append(zip);
-                        $tr.append($('<td/>').html(country1));
-                        $tr.find('td').eq(5).append(country);
-                        $tr.append($('<td/>').html(client_since1));
-                        $tr.find('td').eq(6).append(client_since);
+                            var firstname1 = '<div class="firstname">' + result[0].firstname + '</div>';
+                            var lastname1 = '<div class="lastname">' + result[0].lastname + '</div>';
+                            var email1 = '<div class="email">' + result[0].email + '</div>';
+                            var client_since1 = '<div class="address">' + result[0].client_since + '</div>';
+                            var country1 = '<div class="country">' + result[0].country + '</div>';
 
-                        $tr.append($('<td/>').html(update));
-                        $tr.find('td').eq(7).append(del);
-                        $tr.find('td').eq(7).append(edit);
+                            var key = $('.table tbody tr').length;
+                            var akey = parseInt(key) + parseInt(1);
+                            $tr.append($('<td/>').html(akey));
+                            $tr.find('td').eq(0).append(id);
+                            $tr.append($('<td/>').html(firstname1));
+                            $tr.find('td').eq(1).append(lastname1);
+                            $tr.find('td').eq(1).append(firstname);
+                            
+                            $tr.find('td').eq(1).append(lastname);
+                            $tr.append($('<td/>').html(email1));
+                            $tr.find('td').eq(2).append(email);
+                            $tr.append($('<td/>').html(country1));
+                            $tr.find('td').eq(3).append(country);
+                            $tr.append($('<td/>').html(client_since1));
+                            $tr.find('td').eq(4).append(client_since);
 
-                        $('.table tr:last').after($tr);
-                        $('#myModal').modal('hide');
+                            $tr.append($('<td/>').html(update));
+                            $tr.find('td').eq(5).append(del);
+                            $tr.find('td').eq(5).append(edit);
 
-                        $tr.closest('tr').find('.TextBox').hide();
-                        $tr.closest('tr').find('.TextBox1').hide();
-                        $tr.closest('tr').find('.TextBox2 ').hide();
-                        $tr.closest('tr').find('.TextBox3 ').hide();
-                        $tr.closest('tr').find('.TextBox4 ').hide();
-                        $tr.closest('tr').find('.TextBox5 ').hide();
-                        $tr.closest('tr').find('.TextBox6 ').hide();
-                        $tr.closest('tr').find('.TextBox7 ').hide();
+                            $('.table tr:last').after($tr);
+                            $('#myModal').modal('hide');
 
-                        $('.modal-body').find('input').val('');
-                    }
+                            $tr.closest('tr').find('.TextBox').hide();
+                            $tr.closest('tr').find('.TextBox1').hide();
+                            $tr.closest('tr').find('.TextBox2 ').hide();
+                            $tr.closest('tr').find('.TextBox3 ').hide();
+                            $tr.closest('tr').find('.TextBox4 ').hide();
+                            $tr.closest('tr').find('.TextBox5 ').hide();
+                            $tr.closest('tr').find('.TextBox6 ').hide();
+                            $tr.closest('tr').find('.TextBox7 ').hide();
+
+                            $('.modal-body').find('input').val('');
+                            $('.select').val('Australia');
+                            $('.state2').show();
+                            $('.state1').hide();
+                            $('.state').hide();
+                            $('#error').hide();
+                            $('#error1').hide();
+                            $('#error2').hide();
+                            $('#error3').hide();
+                        }
 
 
-                });
+                    });
 
         return false;
 
+
     });
-    
 
     $('.update').live('click', function() {
         var update = $(this);
@@ -218,33 +283,26 @@ $(document).ready(function() {
                             var firstname = '<input type="text" name="firstname" class="TextBox1 input-small" value="' + result[0].firstname + '" >';
                             var lastname = '<input type="text" name="lastname" class="TextBox2 input-small"" value="' + result[0].lastname + '">';
                             var email = '<input type="text" name="email" class="TextBox3" value="' + result[0].email + '">';
-                            var phnum = '<input type="text" name="phnum" class="TextBox4 input-small" value="' + result[0].phnum + '" >';
-                            var zip = '<input type="text" name="zip" class="TextBox5 input-small" value="' + result[0].zip + '" >';
                             var country = '<input type="text" name="country" class="TextBox6 input-small" value="' + result[0].country + '" >';
                             var client_since = '<input type="text" name="client_since" class="TextBox7 input-small" value="' + result[0].client_since + '" >';
 
                             var firstname1 = '<div class="firstname">' + result[0].firstname + '</div>';
                             var lastname1 = '<div class="lastname">' + result[0].lastname + '</div>';
                             var email1 = '<div class="email">' + result[0].email + '</div>';
-                            var zip1 = '<div class="zip">' + result[0].zip + '</div>';
-                            var phnum1 = '<div class="phnum">' + result[0].phnum + '</div>';
                             var client_since1 = '<div class="client_sice">' + result[0].client_since + '</div>';
                             var country1 = '<div class="country">' + result[0].country + '</div>';
 
                             update.closest('tr').find('td').eq(1).html(firstname1);
-                            update.closest('tr').find('td').eq(1).append(firstname);
                             update.closest('tr').find('td').eq(1).append(lastname1);
+                            update.closest('tr').find('td').eq(1).append(firstname);
+                            
                             update.closest('tr').find('td').eq(1).append(lastname);
                             update.closest('tr').find('td').eq(2).html(email1);
                             update.closest('tr').find('td').eq(2).append(email);
-                            update.closest('tr').find('td').eq(3).html(phnum1);
-                            update.closest('tr').find('td').eq(3).append(phnum);
-                            update.closest('tr').find('td').eq(4).html(zip1);
-                            update.closest('tr').find('td').eq(4).append(zip);
-                            update.closest('tr').find('td').eq(5).html(country1);
-                            update.closest('tr').find('td').eq(5).append(country);
-                            update.closest('tr').find('td').eq(6).html(client_since1);
-                            update.closest('tr').find('td').eq(6).append(client_since);
+                            update.closest('tr').find('td').eq(3).html(country1);
+                            update.closest('tr').find('td').eq(3).append(country);
+                            update.closest('tr').find('td').eq(4).html(client_since1);
+                            update.closest('tr').find('td').eq(4).append(client_since);
 
 
                             update.closest('tr').find('.TextBox1').hide();

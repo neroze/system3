@@ -15,8 +15,9 @@
         <link rel="stylesheet" href=<?php echo base_url('css/bootstrap-timepicker.min.css') ?> />
         <link rel="stylesheet" href=<?php echo base_url('css/select2.css') ?> />
         <script type="text/javascript" src="<?php echo base_url('js/jquery.js') ?>"></script>
+       
         <script type="text/javascript" src="<?php echo base_url('js/jquery.validate.js') ?>" ></script>
-        <script type="text/javascript" src="<?php echo base_url('js/jquery.validate.min.js') ?>" ></script>
+       
         <script type="text/javascript" src="<?php echo base_url('js/bootstrap-datetimepicker.min.js') ?>" ></script>
         <script type="text/javascript" src="<?php echo base_url('js/bootstrap-timepicker.min.js') ?>" ></script>
         <script type="text/javascript" src="<?php echo base_url('js/bootstrap.min.js') ?>"></script>
