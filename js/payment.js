@@ -27,8 +27,8 @@ $(document).ready(function() {
                 $('.TextBox3').hide();
                  $('.TextBox4').hide();
                 $('.on').hide();
-                //var row=($(this).attr('id'));
-                // var row = ($('tr').length)-
+                $('#error').hide();
+                $('#error1').hide();
           $('#datetimepick').datetimepicker({
         format: 'yyyy-MM-dd',
         language: 'pt-BR'
@@ -59,7 +59,30 @@ $(document).ready(function() {
         $(".payment").on('click', function() {
            
             var post_data = $('.modal-body').find('input,select').serialize();
-          
+              if ($('#date').val() === '')
+        {
+            $('#error').show();
+            $('#date1').on('blur', function() {
+                if ($('#date1').val() !== '') {
+                    $('#error').hide();
+                }
+                else {
+                    $('#error').show();
+                }
+            });
+        }
+      if ($('#amount').val() === ''){
+            $('#error1').show();
+            $('#amount').on('blur', function() {
+                if ($('#amount').val() !== '') {
+                    $('#error1').hide();
+                }
+                else {
+                    $('#error1').show();
+                }
+            });
+      }
+          else
             $.ajax(
                     {
                         url: baseurl + "/payment/payment_insert",

@@ -43,6 +43,7 @@ $(document).ready(function() {
     $('#error1').hide();
     $('#error2').hide();
     $('#error3').hide();
+    $('#error4').hide();
 
     $('.select').on('click', function() {
 
@@ -51,10 +52,13 @@ $(document).ready(function() {
             $('.state1').show();
             $('.state').hide();
             $('.state2').hide();
+            $('.state2').val('');
 
         }
         else if ($(this).val() === 'Australia') {
             $('.state2').show();
+             $('.state1').val('');
+            
             $('.state1').hide();
             $('.state').hide();
 
@@ -62,6 +66,8 @@ $(document).ready(function() {
         else
         {
             $('.state').show();
+            $('.state1').val('');
+            $('.state2').val('');
             $('.state1').hide();
             $('.state2').hide();
         }
@@ -81,6 +87,7 @@ $(document).ready(function() {
         $('#error1').hide();
         $('#error2').hide();
         $('#error3').hide();
+        $('#error4').hide();
 
     });
 
@@ -179,7 +186,11 @@ $(document).ready(function() {
                         dataType: 'json',
                         success: function(result)
                         {
-
+                            if (result === null)
+                            {
+                               $('#error4').show();
+                            }
+                            else{
                             var $tr = $('<tr/>');
                             var del = ' <i class="delete icon-trash"></i>  ';
                             var update = '<i class="update icon-check"></i>';
@@ -239,6 +250,8 @@ $(document).ready(function() {
                             $('#error1').hide();
                             $('#error2').hide();
                             $('#error3').hide();
+                             $('#error4').hide();
+                            }
                         }
 
 

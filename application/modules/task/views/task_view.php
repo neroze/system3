@@ -87,7 +87,7 @@
                                         foreach ($total as $val) {
 
                                             $sum += $val->working_hour;
-                                            ;
+                                            
                                         }
                                         echo" $sum hours";
                                         ?>

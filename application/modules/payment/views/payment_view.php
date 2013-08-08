@@ -7,8 +7,7 @@ $this->load->view('header');?>
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                 <h3 id="myModalLabel">Add New</h3>
                             </div>    <div class="modal-body">
-                                 <div class="span2"></div>
-                                 <div class="span4">
+                             
                                 <?php
                               
                                 echo form_label('Title', 'Title');?>
@@ -21,24 +20,23 @@ $this->load->view('header');?>
                                 <br/>
                                 <?php echo form_label('Paid_Date', 'paid_date');?>
                                 <div id="datetimepick" class="input-append date">
-                               <?php echo form_input('paid_date');?>
+                               <?php echo form_input('paid_date','','id="date1"');?>
                                  <span class="add-on" >
                                 <i class="icon-time"></i>
                                 </span>
-                                </div>
+                                </div>  <p id="error">The field is required</p>
                                 <?php echo form_label('Amount', 'amount');
-                                echo form_input('amount');
+                                echo form_input('amount','','id="amount"');?>  <p id="error1">The field is required</p>
                               
-                                echo '<div class="modal-footer">';
-                                echo form_submit('submit', 'submit', 'class="payment btn btn-primary"');
-                                  echo '</div>';
+                                <div class="modal-footer">
+                                <?php echo form_submit('submit', 'submit', 'class="payment btn btn-primary"');?>
+                                 </div>
                                 
-                                ?>
+                              
                             </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+</div>
                 <div class="span9">
                     <div class="row-fluid">
                             <h2>Payment List</h2>

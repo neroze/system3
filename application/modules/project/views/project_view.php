@@ -7,13 +7,12 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <h3 id="myModalLabel">Add New</h3>
         </div>    <div class="modal-body addproject">
-            <div class="span2"></div>
-            <div class="span4">
+            
             <?php
             
-            echo form_label('Title', 'title');
-            echo form_input('title');
-            echo form_label('Client', 'client');
+            echo form_label('Title', 'title');?>
+            <input type="text" id="title" name="title"><p id="error">The field is required</p><p id="error4">The Title is already saved</p>
+            <?php echo form_label('Client', 'client');
             ?>
             <select name ="e1" id="e1">
                 <?php foreach ($records as $reco) { ?>
@@ -25,21 +24,23 @@
             <?php
             echo form_label('Start-Date', 'start_date');?>
             <div id="datet" class="input-append date">
-            <?php echo form_input('start_date');?>
+            <?php echo form_input('start_date','','id="sdate"');?>
             <span class="add-on">
                 <i class="icon-time"></i>
             </span></div>
+            <p id="error1">The field is required</p>
             <?php echo form_label('End-Date', 'end_date');?>
             <div id="date" class="input-append date">
-            <?php echo form_input('end_date');?>
+            <?php echo form_input('end_date','','id="edate"');?>
             <span class="add-on" >
                 <i class="icon-time"></i>
             </span></div>
+            <p id="error2">The field is required</p>
             <?php echo form_label('Total Budget', 'budget_amount');
-            echo form_input('budget_amount');
-            ?>
+            echo form_input('budget_amount','','id="bamount"');
+            ?><p id="error3">The field is required</p>
         </div>
-        </div>
+        
         <div class="modal-footer">
             <?php
             echo form_submit('submit', 'submit', 'class="project btn btn-primary"');
@@ -127,9 +128,9 @@
     <?php echo form_input('budget_amount', $rec->budget_amount, 'class="TextBox4 input-small"');
     "</td>";?>
     <td>              
-                          <i class="update icon-check" alt="update" ></i>
-                            <i class="delete icon-trash" alt="delete"></i>        
-                            <i class="edit icon-edit" alt="edit"></i> 
+                          <i class="update icon-check" alt="update" title="update" ></i>
+                            <i class="pdelete icon-trash" alt="delete" title="delete"></i>        
+                            <i class="edit icon-edit" alt="edit" title="edit"></i> 
 <!--                             <i class="prodetail icon-book" alt="detail"></i>-->
                          
                      <a href="#myModa" class="btn prodetail" data-toggle="modal">Details</a>
@@ -155,7 +156,7 @@
                    <td>Amount Paid</td>
                    <td>Paid Date</td>
                 </tr>
-                <tbody></tbody>
+                <tbody class = "tbody"></tbody>
             </table>
             <div class="modal-footer"></div>
         </div>
@@ -172,7 +173,7 @@
                               
                                 echo form_label('Title', 'Title');?>
 
-                                <select name="e1" id="e1" class="select">
+                                <select name="e1" id="e2" class="select">
                                 <?php foreach ($record as $rec) {
                                     ?>
                                     <option value='<?php echo $rec->id; ?>'><?php echo $rec->title;}?></option>
@@ -180,16 +181,17 @@
                                 <br/>
                                 <?php echo form_label('Paid_Date', 'paid_date');?>
                                 <div id="datetimepick" class="input-append date">
-                               <?php echo form_input('paid_date');?>
+                               <?php echo form_input('paid_date','','id="date"');?>
                                  <span class="add-on" >
                                 <i class="icon-time"></i>
                                 </span>
                                 </div>
+                                <p id="err">The field is required</p>
                                 <?php echo form_label('Amount', 'amount');
-                                echo form_input('amount')?>
-                                 
+                                echo form_input('amount','','id="amount"')?>
+                                 <p id="err1">The field is required</p>
                                 <div class="modal-footer">
-                                <?php echo form_submit('submit', 'submit', 'class="btn btn-primary pay"');?>
+                                <?php echo form_submit('submit', 'submit', 'class="pay btn btn-primary "');?>
                              
                             </div>
                             </div>

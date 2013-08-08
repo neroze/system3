@@ -15,10 +15,10 @@ class Task extends MX_Controller {
       
             $this->load->model('task_model');
             $feed['record'] = $this->task_model->getdata($id);
-            $feed['title'] = $this->task_model->gettitle($id);
-       
-            $feed['total'] =    $this->task_model->get($id);
+            $feed['title'] = $this->task_model->gettitle($id);        
+            $feed['total'] = $this->task_model->get($id);
             $feed['project_id'] = $id;
+           
             $this->load->view('task_view', $feed);
        
     }

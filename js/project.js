@@ -21,13 +21,14 @@
         });
     });
                 $("#e1").select2();
+                $("#e2").select2();
                 $('.TextBox1').hide();
                 $('.TextBox2').hide();
                 $('.TextBox3').hide();
                  $('.TextBox4').hide();
                 $('.on').hide();
-                //var row=($(this).attr('id'));
-                // var row = ($('tr').length)-
+               $('#err').hide();
+                $('#err1').hide();
         
             $('#datet,#date').datetimepicker({
             format: 'yyyy-MM-dd',
@@ -37,6 +38,8 @@
         
            $('.close').on('click',function(){
     $('.modal-body').find('input').val('');
+    $('.another').find('input').val('');
+    $('.antable .tbody').find('td').remove();
 });
                 $(".edit").live('click', function() {
 
@@ -76,7 +79,7 @@
                    $tr.append($('<td/>').html(val.Tit));
                     $tr.append($('<td/>').html(val.amount));
                      $tr.append($('<td/>').html(val.paid_date));
-                       $('.antable tbody').append($tr);
+                       $('.antable .tbody').append($tr);
                        console.log($('.antable tr:last'));
                        //console.log(val.Tit);
                });
@@ -89,9 +92,58 @@
         });
         
         $(".project").live('click', function() {
-//            $('.modal-body').find('input').each(function() {
-//     if (($(this).val()).length!== 0) {
+
             var post_data = $('.addproject').find('input,select').serialize();
+             if ($('#title').val() === '')
+        {
+            $('#error').show();
+            $('#title').on('blur', function() {
+                if ($('#title').val() !== '') {
+                    $('#error').hide();
+                }
+                else {
+                    $('#error').show();
+                }
+            });
+        }
+      if ($('#sdate').val() === ''){
+            $('#error1').show();
+            $('#sdate').on('blur', function() {
+                if ($('#sdate').val() !== '') {
+                    $('#error1').hide();
+                }
+                else {
+                    $('#error1').show();
+                }
+            });
+        }
+
+        if ($('#edate').val() === '') {
+            $('#error2').show();
+
+            $('#edate').on('blur', function() {
+                if ($('#edate').val() !== '') {
+                    $('#error2').hide();
+                }
+                else {
+                    $('#error2').show();
+                }
+            });
+        }
+          if ($('#bamount').val() === '')
+        {
+            $('#error3').show();
+            $('#bamount').on('blur', function() {
+                if ($('#bamount').val() !== '') {
+                    $('#error3').hide();
+                }
+                else {
+                    $('#error3').show();
+                }
+            });
+        }
+
+        else
             $.ajax(
                     {
                         url: baseurl + "/project/pro_insert",
@@ -100,11 +152,17 @@
                         dataType: 'json',
                         success: function(result)
                         {
+                            if (result === null)
+                                {
+                                    $('#error4').show();
+                                }
+                                else
+                                    {
                          var   project_id = result[0].id;
                         var link= baseurl +"/task/index/" +project_id;
-                            var del= '<i class="delete icon-trash"></i>'; 
-                           var update ='<i class="update icon-check"></i>';
-                           var edit='<i class="edit icon-edit"></i>  ';
+                            var del= '<i class="pdelete icon-trash" title="delete"></i>'; 
+                           var update ='<i class="update icon-check" title="update"></i>';
+                           var edit='<i class="edit icon-edit" title="edit"></i>  ';
                            var detail='  <a href="#myModa" class="btn prodetail" data-toggle="modal">Details</a>';
                            var task='  <a href="'+link+'" class="btn">Task</a>';
                           var title='<input type="text" name="title" class="TextBox1 input-small" value="'+result[0].title+'" >';
@@ -150,7 +208,7 @@
                       $tr.closest('tr').find('.TextBox4 ').hide();
                       $tr.closest('tr').find('.on').hide(); 
                       $('.modal-body').find('input').val('');
-                      
+                                    }
                         }
                     });
 
@@ -208,13 +266,13 @@
                  return false;
         
     });
-    $('.delete').on('click',function(){
+    $('.pdelete').live('click',function(){
         
       var rem=$(this);
        var answer=confirm("Are you sure?");
          if (answer)
         { 
-                    var del=  $(this).closest('tr').find('.TextBox').val();
+                    var del=  rem.closest('tr').find('.TextBox').val();
        $.ajax({
         url: baseurl + "/project/deletedata/"+del,
                     type: 'POST',
@@ -233,12 +291,35 @@
 
       
     });
-    $("#e1").select2();
+  
     
      $(".pay").on('click', function() {
        
             var post_data = $('.another').find('input,select').serialize();
-          
+             if ($('#date').val() === '')
+        {
+            $('#err').show();
+            $('#date').on('blur', function() {
+                if ($('#date').val() !== '') {
+                    $('#err').hide();
+                }
+                else {
+                    $('#err').show();
+                }
+            });
+        }
+      if ($('#amount').val() === ''){
+            $('#err1').show();
+            $('#amount').on('blur', function() {
+                if ($('#amount').val() !== '') {
+                    $('#err1').hide();
+                }
+                else {
+                    $('#err1').show();
+                }
+            });
+      }
+          else{
             $.ajax(
                     {
                         url: baseurl + "/project/pay_insert",
@@ -254,8 +335,9 @@
                     });
             
             return false;
-            
+          } 
      });
+    
         });
        
        

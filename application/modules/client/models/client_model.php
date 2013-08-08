@@ -19,10 +19,20 @@ class Client_Model extends CI_Model {
 
     public function cinsert() {
        
-      // $this->session->set_userdata('state', $state);
+     
        $email= $this->input->post('email');
-       foreach ($_POST['state'] as $state) {
- 
+      if ($this->input->post('state1'))
+          {
+          $state = $this->input->post('state1');
+          }
+          elseif($this->input->post('state2'))
+          {
+          $state = $this->input->post('state2');
+          }
+ else
+ {
+     $state = $this->input->post('state');
+ }
         $data = array(
             'firstname' => $this->input->post('firstname'),
             'lastname' => $this->input->post('lastname'),
@@ -30,13 +40,14 @@ class Client_Model extends CI_Model {
             'phnum' => $this->input->post('phnum'),
             'address' => $this->input->post('address'),
             'city' => $this->input->post('city'),
+            
             'state' => $state,
             'country' => $this->input->post('country'),
             'Team'=>$this->input->post('Team'),
             'zip'=>$this->input->post('zip'),
             'client_since'=>$this->input->post('client_since')
         );
-       }
+       
          $query = $this->db->get_where('client', array('email' => $email));
         $row = $query->row_array();
         if (empty($row)) {
@@ -45,6 +56,10 @@ class Client_Model extends CI_Model {
          $quer = $this->db->get_where('client', array('c_id' => $id));
         
         return $quer->result();
+        }
+        else 
+        {
+          
         }
     }
     public function cupdate($id) {

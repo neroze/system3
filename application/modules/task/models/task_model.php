@@ -12,6 +12,8 @@ class Task_Model extends CI_Model {
         } else {
             $status = 'pending';
         }
+        
+       
         $this->db->insert('task', array(
             'project_id' => $t_id,
             'Task_title' => $this->input->post('task_title'),
@@ -23,12 +25,17 @@ class Task_Model extends CI_Model {
 
         $id = $this->db->insert_id();
       
-        $this->db->select('t_id,project.title as project_title,Task_title,working_hour,project_id,status');
+        $this->db->select('t_id,Task_title,working_hour,project_id,status');
         $this->db->join('project', 'task.project_id = project.id');
         $query = $this->db->get_where('task', array('t_id' => $id));
         return $query->result();
+        
     }
-
+public function cal(){
+     $work = $this->input->post('working_hour');
+//     $val = array_sum($work);
+        return $work;
+}
     public function getdata($id) {
         $this->db->select('t_id,project.title as project_title,Task_title,working_hour,project_id,status');
 

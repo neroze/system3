@@ -21,7 +21,7 @@
 
         <input id="lname" name="lastname"  type="text" /><p id="error1">The field is required</p>
             <?php echo form_label('Email*', 'email');?>
-           <input id="email" name="email"  type="text" /><p id="error2">The valid email is required</p>
+        <input id="email" name="email"  type="text" /><p id="error2">The valid email is required</p><p id="error4">The client with this email address is already saved</p>
            <?php echo form_label('Company', 'Team');
             echo form_input('Team');
             echo form_label('Address', 'address');
@@ -39,10 +39,10 @@
             
              </select>
             <?php echo form_label('State/Province', 'state');
-            echo form_input('state[]', '','class="state"');
+            echo form_input('state', '','class="state"');
             ?>
         
-            <select name="state[]" id="e2" class="state1">
+            <select name="state1" id="e2" class="state1">
             <option value="">------Choose State--------</option> 
             
              <?php foreach ($state as $s) {?>
@@ -50,17 +50,18 @@
              <?php }?>
             </select>
         
-            <select name="state[]" id="e3" class="state2">
+            <select name="state2" id="e3" class="state2">
             <option value="">------Choose State--------</option> 
             
              <?php foreach ($astate as $as) {?>
             <option value="<?php echo $as->astate;?>"><?php echo $as->astate;?></option> 
             <?php }?>
             </select>
-            <?php echo form_label('Phone', 'phnum');
-            echo form_input('phnum');
+            <?php 
             echo form_label('Zip/Postal code', 'zip');
             echo form_input('zip');
+            echo form_label('Phone', 'phnum');
+            echo form_input('phnum');
             echo form_label('Client since*', 'client_since');
             ?>
 
