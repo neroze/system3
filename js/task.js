@@ -77,9 +77,9 @@ $(document).ready(function() {
                         var update = '<i class="update icon-check" title="update"></i>';
                         var edit = '<i class="edit icon-edit" title="edit"></i>  ';
 
-                        var task = '<div class="Task_title">' + result[0].Task_title + '</div>';
-                        var work = '<div class="working_hour">' + result[0].working_hour + '</div>';
-                        var status = '<div class="status">' + result[0].status + '</div>';
+                        var task = '<div class="Task_title">' + result.a[0].Task_title + '</div>';
+                        var work = '<div class="working_hour">' + result.a[0].working_hour + '</div>';
+                        var status = '<div class="status">' + result.a[0].status + '</div>';
 
                         save.closest('tr').find('td').eq(1).append(task);
                         save.closest('tr').find('td').eq(2).append(work);
@@ -97,6 +97,8 @@ $(document).ready(function() {
                         save.closest('tr').find('.TextBox4 ').hide();
                         save.closest('tr').find('.TextBox5 ').hide();
                         save.closest('tr').find('.save ').hide();
+                        
+                         $('.total').html(result.b+"hours");
 
                     }
                 });

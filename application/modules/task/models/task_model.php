@@ -31,10 +31,20 @@ class Task_Model extends CI_Model {
         return $query->result();
         
     }
-public function cal(){
-     $work = $this->input->post('working_hour');
-//     $val = array_sum($work);
-        return $work;
+public function cal($id){
+       $this->db->select('working_hour');
+       
+         $quer = $this->db->get_where('task', array('project_id' => $id));
+         
+         $work = $quer->result();
+          $sum = 0;
+           foreach ($work as $val) {
+
+               $sum += $val->working_hour;
+                                            
+                }
+            return $sum ;
+        
 }
     public function getdata($id) {
         $this->db->select('t_id,project.title as project_title,Task_title,working_hour,project_id,status');

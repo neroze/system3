@@ -15,7 +15,7 @@
             echo form_label('Firstname*', 'firstname');
 
 //            echo form_input('firstname','','class="required"');?>
-        <input id="fname" name="firstname"  type="text" /><p id="error">The field is required</p>
+        <input id="fname" name="firstname"  type="text" value="" /><p id="error">The field is required</p>
         
             <?php echo form_label('Lastname*', 'lastname');?>
 

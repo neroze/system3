@@ -77,12 +77,12 @@ $(document).ready(function() {
 
 
     $('.close').on('click', function() {
+    
         $('.modal-body').find('input').val('');
-
-        $('.select').val('Australia');
-        $('.state2').show();
-        $('.state1').hide();
-        $('.state').hide();
+ //$('.select').append('<option value="sum">dfsfsdf</option>');
+//        $('.state2').show();
+//        $('.state1').hide();
+//        $('.state').hide();
         $('#error').hide();
         $('#error1').hide();
         $('#error2').hide();

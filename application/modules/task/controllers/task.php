@@ -28,7 +28,9 @@ class Task extends MX_Controller {
     public function insert($t_id) {
         $this->load->model('task_model');
         $feed = $this->task_model->t_insert($t_id);
-        echo json_encode($feed);
+         $work = $this->task_model->cal($t_id);
+     
+        echo json_encode(array("a" => $feed, "b" => $work));
     }
 
     public function delete($id) {

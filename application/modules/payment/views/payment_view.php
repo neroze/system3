@@ -63,7 +63,7 @@ $this->load->view('header');?>
                                 <td>Title</td>
                                 <td>Amount</td>
                                 <td>Paid_Date</td>
-                                <td>Project_Id</td>
+<!--                                <td>Project_Id</td>-->
                                 <td>Action</td>
                             </tr>
                          </thead>
@@ -104,10 +104,9 @@ $this->load->view('header');?>
                             </td>
                             <td>
                             
-                            <?php echo $rec->pro_id . "";?>
+                            <!--<?php echo $rec->pro_id . "";?>-->
                             
-                            </td>
-                            <td>
+                            
                             <i class="update icon-check" alt="update"></i>
                             <i class="delete icon-trash" alt="delete"></i>        
                             <i class="edit icon-edit" alt="edit"></i> 
