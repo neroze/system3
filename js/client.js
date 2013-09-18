@@ -137,7 +137,7 @@ $(document).ready(function() {
                 }
             });
         }
-        else if ($('#lname').val() === '')
+        if ($('#lname').val() === '')
         {
             $('#error1').show();
             $('#lname').on('blur', function() {
@@ -149,7 +149,7 @@ $(document).ready(function() {
                 }
             });
         }
-        else if (!((/^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i).test($('#email').val()))) {
+        if (!((/^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i).test($('#email').val()))) {
             $('#error2').show();
             $('#email').on('blur', function() {
                if (((/^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i).test($('#email').val())))  {
@@ -160,7 +160,7 @@ $(document).ready(function() {
                 }
             });
         }
-      else if ($('#client').val() === '') {
+      if ($('#client').val() === '') {
             $('#error3').show();
 
             $('#client').on('blur', function() {

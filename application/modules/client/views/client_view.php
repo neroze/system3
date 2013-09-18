@@ -191,6 +191,7 @@
             <?php }
             ?> 
         </table>
+       
         <div class="pagination"  >
             <ul>
                 <li> <?php echo $this->pagination->create_links(); ?></li>
