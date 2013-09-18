@@ -47,12 +47,12 @@
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu"><li>
-                                   <a href="<?php echo base_url('index.php/auth/logout')?>">Check Out</a></li>
+                                   <a href="<?php echo base_url('auth/logout')?>">Check Out</a></li>
                             </ul>
                         </li>
                     </ul>
             <div class="nav">
-                <a class="brand" href="<?php echo base_url('index.php/client')?>">3HAMMERS CLIENT MANAGEMENT SYSTEM</a>
+                <a class="brand" href="<?php echo base_url('client')?>">3HAMMERS CLIENT MANAGEMENT SYSTEM</a>
             </div>
           </div><!--/.nav-collapse -->
         </div>
@@ -65,10 +65,10 @@
                 <div class="span3 bs-docs-sidebar" style="margin-top: 81px;">
                     
                     <ul class="nav nav-list bs-docs-sidenav">
-                         <li class="active"><a href=""><i class="icon-chevron-right"></i>MANAGE USER</a></li>
-                       <li><a href="<?php echo base_url('index.php/project')?>"><i class="icon-chevron-right"></i>Project</a></li>
-                        <li ><a href="<?php echo base_url('index.php/payment')?>"><i class="icon-chevron-right"></i>Payment</a></li>
-                        <li><a href="<?php echo base_url('index.php/client')?>"><i class="icon-chevron-right"></i> Client</a></li>
+                         <li class="active"><a href="">MANAGE USER</a></li>
+                       <li><a href="<?php echo base_url('project')?>"><i class="icon-chevron-right"></i>Project</a></li>
+                        <li ><a href="<?php echo base_url('payment')?>"><i class="icon-chevron-right"></i>Payment</a></li>
+                        <li><a href="<?php echo base_url('client')?>"><i class="icon-chevron-right"></i> Client</a></li>
 
                     </ul>
                     

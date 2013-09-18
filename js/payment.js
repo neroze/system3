@@ -36,6 +36,8 @@ $(document).ready(function() {
          
          $('.close').on('click',function(){
     $('.modal-body').find('input').val('');
+     $('#error').hide();
+                $('#error1').hide();
 });
 
          
@@ -59,7 +61,7 @@ $(document).ready(function() {
         $(".payment").on('click', function() {
            
             var post_data = $('.modal-body').find('input,select').serialize();
-              if ($('#date').val() === '')
+              if ($('#date1').val() === '')
         {
             $('#error').show();
             $('#date1').on('blur', function() {

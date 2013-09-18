@@ -9,11 +9,10 @@ class Client_Model extends CI_Model {
         $this->db->delete('client', array('c_id' => $id));
     }
 
-    public function cgetdata() {
-        $this->db->select('*');
-        $this->db->from('client');
-        $query = $this->db->get();
-        //echo $this->db->last_query();
+    public function cgetdata($start = -0, $limit = NULL) {
+
+        $query = $this->db->get('client', $limit, $start);
+        
         return $query->result();
     }
 
@@ -96,7 +95,12 @@ class Client_Model extends CI_Model {
        $query= $this->db->get('aus');
        return $query->result();
     }
-      
+        public function totalData() {
+
+        return  $this->db->from('client')->count_all_results();
+
+    
+    }
 }
 
 ?>

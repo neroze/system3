@@ -33,13 +33,13 @@ class Project_Model extends CI_Model {
         }
     }
 
-    public function getdata() {
+    public function getdata($start = -0, $limit = NULL) {
         $this->db->select('id,title,client.firstname AS client_firstname,client.lastname AS last, start,end,budget_amount,cl_id');
-        $this->db->from('project');
+//        $this->db->from('project');
         $this->db->join('client', 'project.cl_id = client.c_id');
         $this->db->order_by('id');
-        $query = $this->db->get();
-        //echo $this->db->last_query();
+        $query = $this->db->get('project',$limit,$start);
+//        echo $this->db->last_query();
         return $query->result();
     }
 
@@ -72,6 +72,13 @@ class Project_Model extends CI_Model {
          $quer = $this->db->get_where('payment', array('pro_id' => $id));
             return  $quer->result();
          }
+         
+          public function totalData() {
+
+        return  $this->db->from('project')->count_all_results();
+
+    
+    }
        
 }
 

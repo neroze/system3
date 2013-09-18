@@ -10,14 +10,14 @@ class Payment_Model extends CI_Model {
         $this->db->delete('payment', array('p_id' => $id));
     }
 
-    public function pgetdata() {
+    public function pgetdata($start = -0, $limit = NULL) {
         $this->db->select('p_id,project.title as project_title,amount,paid_date,pro_id');
-        $this->db->from('payment');
+       // $this->db->from('payment');
         $this->db->join('project', 'payment.pro_id = project.id');
         $this->db->order_by('p_id');
        // $this->db->order_by('p_id');
         // $this->db->join('project','project.title=');
-        $query = $this->db->get();
+        $query = $this->db->get('payment', $limit, $start);
         //echo $this->db->last_query();
         return $query->result();
     }
@@ -67,6 +67,12 @@ class Payment_Model extends CI_Model {
         //echo $this->db->last_query();
         return $query->result();
     } 
+    public function totalData() {
+
+        return  $this->db->from('payment')->count_all_results();
+
+    
+    }
 }
 
 ?>

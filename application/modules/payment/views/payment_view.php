@@ -7,33 +7,39 @@ $this->load->view('header');?>
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                 <h3 id="myModalLabel">Add New</h3>
                             </div>    <div class="modal-body">
-                             
-                                <?php
-                              
-                                echo form_label('Title', 'Title');?>
+                              <table>
+                                <tr><td>Title:</td>
 
-                                <select name ="e1" id="e1" class="select">
+                                <td><select name ="e1" id="e1" class="select">
                                 <?php foreach ($records as $reco) {
                                     ?>
                                     <option value='<?php echo $reco->id; ?>'><?php echo $reco->title;}?></option>
-                                </select>
-                                <br/>
-                                <?php echo form_label('Paid_Date', 'paid_date');?>
-                                <div id="datetimepick" class="input-append date">
+                                </select></td>
+                                </tr>
+                                <tr><td></td></tr>
+                               <tr><td></td></tr>
+                                    <tr><td>Paid_Date*:</td>
+                                <td><div id="datetimepick" class="input-append date">
                                <?php echo form_input('paid_date','','id="date1"');?>
                                  <span class="add-on" >
                                 <i class="icon-time"></i>
                                 </span>
-                                </div>  <p id="error">The field is required</p>
-                                <?php echo form_label('Amount', 'amount');
-                                echo form_input('amount','','id="amount"');?>  <p id="error1">The field is required</p>
+                                </div> </td>
+                                <td><p id="error">The field is required</p></td>
+                                    </tr>
                               
+                               <tr><td>Amount:</td>
+                               <td><?php echo form_input('amount','','id="amount"');?></td>
+                               <td><p id="error1">The field is required</p></td>
+                               </tr>
+                                </table>
+                                  </div>
                                 <div class="modal-footer">
                                 <?php echo form_submit('submit', 'submit', 'class="payment btn btn-primary"');?>
                                  </div>
                                 
                               
-                            </div>
+                          
                             </div>
                         </div>
 </div>
@@ -117,11 +123,17 @@ $this->load->view('header');?>
                 </tr></tbody>
                         <?php }?>
                     </table>
+                      <div class="pagination"  >
+            <ul>
+                <li> <?php echo $this->pagination->create_links(); ?></li>
+            </ul>
+        </div>
                     
                 </div>
                 
             </div>
         </div>
                 </div>
-    </body>
+    
+</body>
 </html>

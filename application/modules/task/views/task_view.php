@@ -38,14 +38,14 @@
                                 </tr>
                             </thead>
                                         <?php foreach ($record as $key => $rec) { ?>
-                                <tbody><tr><td>
+                                <tbody class="last"><tr><td>
                                             <?php echo $key + 1; ?>
                                             <?php echo form_input('t_id', $rec->t_id, 'class="TextBox input-small"'); ?>
-
+                                                 <input type="checkbox" name="status" class="TextBox4">
                                             <?php echo form_input('project_id', $rec->project_id, 'class="TextBox1 input-small"'); ?>
                                         </td>
                                         <td>
-                                            <input type="checkbox" name="status" class="TextBox4">
+                                           
                                             <div class="Task_title">
                                                 <?php echo $rec->Task_title; ?>
                                             </div>
@@ -98,7 +98,7 @@
                 </div>
             </div>
         </div>
-    </body>
+</body>
 </html>
 
 

@@ -1,9 +1,4 @@
 $(document).ready(function() {
-
-
-
-
-
     var _val = "";
     $('.search-query').live('keyup', function() {
         _q = $(this).val();
@@ -142,7 +137,7 @@ $(document).ready(function() {
                 }
             });
         }
-        if ($('#lname').val() === '')
+        else if ($('#lname').val() === '')
         {
             $('#error1').show();
             $('#lname').on('blur', function() {
@@ -154,7 +149,7 @@ $(document).ready(function() {
                 }
             });
         }
-        if (!((/^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i).test($('#email').val()))) {
+        else if (!((/^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i).test($('#email').val()))) {
             $('#error2').show();
             $('#email').on('blur', function() {
                if (((/^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i).test($('#email').val())))  {
@@ -165,7 +160,7 @@ $(document).ready(function() {
                 }
             });
         }
-        if ($('#client').val() === '') {
+      else if ($('#client').val() === '') {
             $('#error3').show();
 
             $('#client').on('blur', function() {
@@ -305,11 +300,11 @@ $(document).ready(function() {
                             var client_since1 = '<div class="client_sice">' + result[0].client_since + '</div>';
                             var country1 = '<div class="country">' + result[0].country + '</div>';
 
-                            update.closest('tr').find('td').eq(1).html(firstname1);
-                            update.closest('tr').find('td').eq(1).append(lastname1);
-                            update.closest('tr').find('td').eq(1).append(firstname);
-                            
+                            update.closest('tr').find('td').eq(1).html(firstname);
                             update.closest('tr').find('td').eq(1).append(lastname);
+                            update.closest('tr').find('td').eq(1).append(firstname1);
+                            
+                            update.closest('tr').find('td').eq(1).append(lastname1);
                             update.closest('tr').find('td').eq(2).html(email1);
                             update.closest('tr').find('td').eq(2).append(email);
                             update.closest('tr').find('td').eq(3).html(country1);

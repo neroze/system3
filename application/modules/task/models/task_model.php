@@ -13,15 +13,17 @@ class Task_Model extends CI_Model {
             $status = 'pending';
         }
         
-       
+        $work = $this->input->post('working_hour');
+        foreach ($work as $hours)
+        {
         $this->db->insert('task', array(
             'project_id' => $t_id,
-            'Task_title' => $this->input->post('task_title'),
-            'working_hour' => $this->input->post('working_hour'),
+            'Task_title' => $this->input->post('Task_title'),
+            'working_hour' => $hours,
             'status' => $status
             
         ));
-
+        }
 
         $id = $this->db->insert_id();
       
@@ -99,6 +101,13 @@ public function cal($id){
          $quer = $this->db->get_where('project', array('id' => $id));
             return  $quer->result();
          }
+         
+               public function totalData() {
+
+        return  $this->db->from('task')->count_all_results();
+
+    
+    }
     
 }
 

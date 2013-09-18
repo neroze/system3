@@ -13,11 +13,36 @@ class Payment extends MX_Controller {
     }
 
     public function index() {
+        $limit = 4;
+        $n = 4;
         $this->load->model('payment_model');
-        $feed['record'] = $this->payment_model->pgetdata();
+          $total_records = $this->payment_model->totalData();
+         $start = $this->uri->segment($n);
+          if (!$start)
+                $start = 0;
+        $feed['record'] = $this->payment_model->pgetdata($start, $limit);
         $this->load->module('project');
         $this->load->model('project_model');
         $feed['records'] = $this->project_model->getdata();
+         $this->load->library('pagination');
+             $config['base_url'] = site_url('payment/index/page');
+            $config['total_rows'] = $total_records;
+            $config['per_page'] = $limit;
+            $config['uri_segment'] = 4;
+            $config['next_link'] = 'next';
+            $config['prev_link'] = 'prev';
+            $config['first_link'] = false;
+            $config['last_link'] = false;
+            $config['num_tag_open'] = '<li>';
+            $config['num_tag_close'] = '</li>';
+            $config['prev_tag_open'] = '<li id="prev">';
+            $config['prev_tag_close'] = '</li>';
+            $config['next_tag_open'] = '<li id="next">';
+            $config['next_tag_close'] = '</li>';
+            // $config['num_links'] = 2;
+            $config['cur_tag_open'] = '<li class="active"><a>';
+            $config['cur_tag_close'] = '</a></li>';
+            $this->pagination->initialize($config);
         $this->load->view('payment_view', $feed);
     }
 
