@@ -90,6 +90,11 @@ $(document).ready(function() {
         format: 'yyyy-MM-dd',
         language: 'pt-BR'
     });
+    
+    $('#datetimepicker').datetimepicker({
+        format: 'yyyy-MM-dd',
+        language: 'pt-BR'
+    });
 
     $(".edit").live('click', function() {
 
@@ -195,9 +200,8 @@ $(document).ready(function() {
                             var lastname = '<input type="text" name="lastname" class="TextBox2 input-small"" value="' + result[0].lastname + '">';
                             var email = '<input type="text" name="email" class="TextBox3" value="' + result[0].email + '">';
                             var country = '<input type="text" name="country" class="TextBox6 input-small" value="' + result[0].country + '" >';
-                            var client_since = '<input type="text" name="address" class="TextBox7 input-small" value="' + result[0].client_since + '" >';
+                            var client_since = '<div id="datetimepicker" class="input-append date"><input type="text" name="client_since" class="TextBox7 input-small" value="' + result[0].client_since + '" ><span class="add-on on" > <i class="icon-time"></i></span></div>';
                             var id = '<input type="text" name="id" class="TextBox input-small" value="' + result[0].c_id + '" >';
-
                             var firstname1 = '<div class="firstname">' + result[0].firstname + '</div>';
                             var lastname1 = '<div class="lastname">' + result[0].lastname + '</div>';
                             var email1 = '<div class="email">' + result[0].email + '</div>';
@@ -292,12 +296,12 @@ $(document).ready(function() {
                             var lastname = '<input type="text" name="lastname" class="TextBox2 input-small"" value="' + result[0].lastname + '">';
                             var email = '<input type="text" name="email" class="TextBox3" value="' + result[0].email + '">';
                             var country = '<input type="text" name="country" class="TextBox6 input-small" value="' + result[0].country + '" >';
-                            var client_since = '<input type="text" name="client_since" class="TextBox7 input-small" value="' + result[0].client_since + '" >';
+                            var client_since = '<div id="datetimepicker" class="input-append date"><input type="text" name="client_since" class="TextBox7 input-small" value="' + result[0].client_since + '" ><span class="add-on on" > <i class="icon-time"></i></span></div>';
 
                             var firstname1 = '<div class="firstname">' + result[0].firstname + '</div>';
                             var lastname1 = '<div class="lastname">' + result[0].lastname + '</div>';
                             var email1 = '<div class="email">' + result[0].email + '</div>';
-                            var client_since1 = '<div class="client_sice">' + result[0].client_since + '</div>';
+                            var client_since1 = '<div class="client_since">' + result[0].client_since + '</div>';
                             var country1 = '<div class="country">' + result[0].country + '</div>';
 
                             update.closest('tr').find('td').eq(1).html(firstname);
@@ -320,6 +324,7 @@ $(document).ready(function() {
                             update.closest('tr').find('.TextBox5 ').hide();
                             update.closest('tr').find('.TextBox6 ').hide();
                             update.closest('tr').find('.TextBox7 ').hide();
+                            update.closest('tr').find('.on ').hide();
                         }
 
                     });
