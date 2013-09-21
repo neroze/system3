@@ -64,9 +64,17 @@ class Project extends MX_Controller {
 
     
     public function details($id){
+      
         $this->load->model('project_model');
        $feed= $this->project_model->pro_detail($id);
-       echo json_encode($feed);
+       $paid =$this->project_model->total_payment($id);
+       $sum= 0;
+       foreach ($paid as  $val) {
+            $sum += $val->amount;
+       }
+       $cs= json_encode(array("a" => $feed, "b" => $sum));
+      
+       echo $cs;
         
     }
 
@@ -81,19 +89,73 @@ class Project extends MX_Controller {
         $this->payment_model->pinsert();
     }
 
-//    public function pro_search() {
+    public function pro_search() {
+        
+         $limit = 4;
+        $n = 4;
+        $this->load->model('project_model');
+        
+         $start = $this->uri->segment($n);
+          if (!$start)
+                $start = 0;
+        $match = $this->input->post('search');
+        $feed['record'] = $this->project_model->search($match,$start,$limit);
+        $this->load->module('client');
+        $this->load->model('client_model');
+        $feed['records'] = $this->client_model->cgetdata();
+         $total_records = $this->project_model->total_pro($match);
+        if (!$this->project_model->search($match,$start,$limit)) {
+            $this->load->view('unsucess');
+        } else {
+              $this->load->library('pagination');
+             $config['base_url'] = site_url('project/index/page');
+            $config['total_rows'] = $total_records;
+            $config['per_page'] = $limit;
+            $config['uri_segment'] = 4;
+            $config['next_link'] = 'next';
+            $config['prev_link'] = 'prev';
+            $config['first_link'] = false;
+            $config['last_link'] = false;
+            $config['num_tag_open'] = '<li>';
+            $config['num_tag_close'] = '</li>';
+            $config['prev_tag_open'] = '<li id="prev">';
+            $config['prev_tag_close'] = '</li>';
+            $config['next_tag_open'] = '<li id="next">';
+            $config['next_tag_close'] = '</li>';
+            // $config['num_links'] = 2;
+            $config['cur_tag_open'] = '<li class="active"><a>';
+            $config['cur_tag_close'] = '</a></li>';
+            $this->pagination->initialize($config);
+            $this->load->view('project_view', $feed);
+        }
+    }
+    public function export($id){
+    $this->load->dbutil();
+    $this->load->model('project_model');
+       $feed= $this->project_model->detail($id);
+         $paid =$this->project_model->total($id);
+       $sum= 0;
+       foreach ($paid as  $val) {
+            $sum += $val->amount;
+       }
+ 
+        $data = ltrim(strstr($this->dbutil->csv_from_result($feed,$sum, ',', "\r\n"), "\r\n"));
+
+        $this->load->helper('download');
+        force_download("project_files.csv", $data);
+        exit;
 //        $this->load->model('project_model');
-//        $match = $this->input->post('search');
-//        $feed['record'] = $this->project_model->search($match);
-//        $this->load->module('client');
-//        $this->load->model('client_model');
-//        $feed['records'] = $this->client_model->cgetdata();
-//        if (!$this->project_model->search($match)) {
-//            $this->load->view('unsucess');
-//        } else {
-//            $this->load->view('project_view', $feed);
-//        }
-//    }
+//       $feed= $this->project_model->detail($id);
+//       $paid =$this->project_model->total($id);
+//       $sum= 0;
+//       foreach ($paid as  $val) {
+//            $sum += $val->amount;
+//       }
+//       $cs = $feed;
+//       $new_report = $this->dbutil->csv_from_result($cs);
+//       echo $new_report;
+// write_file('csv_file.csv',$new_report);
+       }
 
 }
 

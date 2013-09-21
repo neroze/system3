@@ -101,6 +101,21 @@ class Client_Model extends CI_Model {
 
     
     }
+    
+    public function cl_search($match,$start,$limit)
+    {
+        $this->db->select('*');
+        $this->db->like('firstname', $match);
+        $this->db->or_like('lastname', $match);
+        $query = $this->db->get('client', $limit, $start);
+        return $query->result();   
+    }
+     public function total($match) {
+        $this->db->select('*');
+         $this->db->like('firstname', $match);
+        $this->db->or_like('lastname', $match);
+        return $this->db->from('client')->count_all_results();
+    }
 }
 
 ?>

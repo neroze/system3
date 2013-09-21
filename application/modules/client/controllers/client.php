@@ -15,7 +15,7 @@ class Client extends MX_Controller {
 
     public function index() {
         
-        $limit = 5;
+        $limit = 10;
         $n = 4;
         $this->load->model('client_model');
         
@@ -70,16 +70,45 @@ class Client extends MX_Controller {
        
     }
 
-//    public function c_search() {
-//        $this->load->model('client_model');
-//        $match = $this->input->post('search');
-//        $feed['record'] = $this->client_model->cl_search($match);
-//        if (!$this->client_model->cl_search($match)) {
-//            $this->load->view('unsucess');
-//        } else {
-//            $this->load->view('client_view', $feed);
-//        }
-//    }
+    public function c_search() {
+        
+             $limit = 10;
+        $n = 4;
+        $this->load->model('client_model');
+        
+        
+         $start = $this->uri->segment($n);
+
+            if (!$start)
+         $start = 0;
+        $match = $this->input->post('search');
+        $feed['record'] = $this->client_model->cl_search($match,$start,$limit);
+         $total_records = $this->client_model->total($match);
+        if (!$this->client_model->cl_search($match,$start,$limit)) {
+            $this->load->view('unsucess');
+        } else {
+             $this->load->library('pagination');
+             $config['base_url'] = site_url('client/c_search/page');
+            $config['total_rows'] = $total_records;
+            $config['per_page'] = $limit;
+            $config['uri_segment'] = 4;
+            $config['next_link'] = 'next';
+            $config['prev_link'] = 'prev';
+             $config['first_link'] = false;
+            $config['last_link'] = false;
+            $config['num_tag_open'] = '<li>';
+            $config['num_tag_close'] = '</li>';
+            $config['prev_tag_open'] = '<li id="prev">';
+            $config['prev_tag_close'] = '</li>';
+            $config['next_tag_open'] = '<li id="next">';
+            $config['next_tag_close'] = '</li>';
+//            // $config['num_links'] = 2;
+            $config['cur_tag_open'] = '<li class="active"><a>';
+            $config['cur_tag_close'] = '</a></li>';
+            $this->pagination->initialize($config);
+            $this->load->view('client_view', $feed);
+        }
+    }
     
     
 

@@ -68,7 +68,7 @@
         
                 <h2>Project List</h2>
                 <div class="pull-left"><a href="#myModal" class="btn" data-toggle="modal">Add New</a></div>
-                  <a href="#myMod" class="btn prodetail" data-toggle="modal">Add Payment</a> 
+                  <a href="#myMod" class="btn" data-toggle="modal">Add Payment</a> 
                     <div class="pull-right">
                       <?php echo form_open('project/pro_search', array('method' => 'post', 'name' => 'search')); ?>
                         <input type="text"  name="search" class="search-query" placeholder="Search" class="pull-right" style="margin: 2px 0px 0px -39px;"/>
@@ -80,10 +80,7 @@
 
     <table class="table" >
 
-    <thead>    <tr href style="color: #fff;
-            background-color: #0088cc;
-            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-            height: 39px;">
+    <thead>    <tr class="colu">
 
             <td>Project_ID</td>
             <td>Title</td>
@@ -165,17 +162,19 @@
             <h3 id="myModalLabel">Project Payments</h3>
         </div>    <div class="modal-body">
             <table class="antable table">
-                <tr href style="color: #fff;
-            background-color: #0088cc;
-            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-            height: 39px;">
+                <tr class="colu">
                    <td>Project Title </td>
                    <td>Amount Paid</td>
                    <td>Paid Date</td>
                 </tr>
                 <tbody class = "tbody"></tbody>
+                  <tr class="colu"><td>Total Amount paid::</td> 
+                  <td class="paid" colspan="2"></td></tr>
             </table>
-            <div class="modal-footer"></div>
+            <div class="modal-footer">
+                <button  class="btn btn-primary export"  ><a href="">Export</a></button>
+                <input type="hidden" class="ex"/>
+            </div>
         </div>
      </div>
     

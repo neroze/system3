@@ -9,7 +9,7 @@
                     <div class="row-fluid">
                         <h2><?php foreach ($title as $rec) {
 
-                } echo $rec->title; ?>->Tasks</h2>
+                } echo $rec->title; ?>/Tasks</h2>
                 <!--                            <div id="project_id" style="display:none;"><?php echo $project_id; ?></div>-->
                         <div class="pull-left newtask btn" onclick="addNewTask(<?php echo $project_id; ?>);">Add New</div>
 
@@ -78,10 +78,13 @@
 
                             <?php }
                             ?> 
-                            <tr>
+                            <tr  href style="color: #fff;
+                                              background-color: #0088cc;
+                                              font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+                                              height: 39px;"">
                                 <td><strong>Total working Time</strong></td>
                                 <td></td>
-                                <td> <div class="total">
+                                <td colspan="3"> <div class="total">
                                         <?php
                                         $sum = 0;
                                         foreach ($total as $val) {

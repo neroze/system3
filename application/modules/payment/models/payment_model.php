@@ -14,7 +14,8 @@ class Payment_Model extends CI_Model {
         $this->db->select('p_id,project.title as project_title,amount,paid_date,pro_id');
        // $this->db->from('payment');
         $this->db->join('project', 'payment.pro_id = project.id');
-        $this->db->order_by('p_id');
+        $this->db->order_by('project_title');
+        $this->db->order_by('paid_date','desc');
        // $this->db->order_by('p_id');
         // $this->db->join('project','project.title=');
         $query = $this->db->get('payment', $limit, $start);
@@ -57,21 +58,23 @@ class Payment_Model extends CI_Model {
         return  $query->result();
     }
 
-         public function p_search($match = "default") {
+         public function p_search($match,$start,$limit) {
         $this->db->select('p_id,project.title as project_title,amount,paid_date,pro_id');
-        //$this->db->from('payment');
-       // $this->db->from('project');
         $this->db->like('project.title', $match);
         $this->db->join('project', 'payment.pro_id = project.id');
-        $query = $this->db->get('payment');
-        //echo $this->db->last_query();
+        $query = $this->db->get('payment',$limit,$start);
         return $query->result();
     } 
     public function totalData() {
 
         return  $this->db->from('payment')->count_all_results();
-
+    }
     
+        public function total_pay($match) {
+         $this->db->select('p_id,project.title as project_title,amount,paid_date,pro_id');
+        $this->db->like('project.title', $match);
+        $this->db->join('project', 'payment.pro_id = project.id');
+        return $this->db->from('payment')->count_all_results();
     }
 }
 

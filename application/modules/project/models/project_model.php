@@ -67,7 +67,7 @@ class Project_Model extends CI_Model {
 
  public function pro_detail($id)
          {
-       $this->db->select('project.title as Tit,amount,paid_date');
+       $this->db->select('id,project.title as Tit,amount,paid_date');
        $this->db->join('project', 'payment.pro_id = project.id');
          $quer = $this->db->get_where('payment', array('pro_id' => $id));
             return  $quer->result();
@@ -79,7 +79,42 @@ class Project_Model extends CI_Model {
 
     
     }
-       
+    public function total_payment($id)
+    {
+           $this->db->select('amount');
+       $this->db->join('project', 'payment.pro_id = project.id');
+         $quer = $this->db->get_where('payment', array('pro_id' => $id));
+            return  $quer->result();
+    }
+    
+  public function search($match,$start,$limit)
+  {
+       $this->db->select('id,title,client.firstname AS client_firstname,client.lastname AS last, start,end,budget_amount,cl_id');
+        $this->db->like('title',$match);
+        $this->db->join('client', 'project.cl_id = client.c_id');
+        return $this->db->get('project',$limit,$start)->result();
+  }
+  public function total_pro($match)
+  {
+       $this->db->select('id,title,client.firstname AS client_firstname,client.lastname AS last, start,end,budget_amount,cl_id');
+        $this->db->like('title',$match);
+        $this->db->join('client', 'project.cl_id = client.c_id');
+      return  $this->db->from('project')->count_all_results();
+  }
+     public function detail($id)
+         {
+       $this->db->select('id,project.title as Tit,amount,paid_date');
+       $this->db->join('project', 'payment.pro_id = project.id');
+         $quer = $this->db->get_where('payment', array('pro_id' => $id));
+            return  $quer;
+         }   
+            public function total($id)
+    {
+        $this->db->select('amount');
+       $this->db->join('project', 'payment.pro_id = project.id');
+       $quer = $this->db->get_where('payment', array('pro_id' => $id));
+            return  $quer->result();
+    }
 }
 
 ?>

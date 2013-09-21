@@ -113,7 +113,7 @@
         <div class="pull-left"><a href="#myModal" class="btn" data-toggle="modal">Add New</a></div>
 
         <div class="pull-right">
-            <?php echo form_open('', array('method' => 'post', 'name' => 'search')); ?>
+            <?php echo form_open('client/c_search', array('method' => 'post', 'name' => 'search')); ?>
             <input type="text"  name="search" class="search-query" placeholder="Search" class="pull-right" style="margin: 2px 0px 0px -39px;"/>
         </div>
         <?php echo form_close(); ?>
