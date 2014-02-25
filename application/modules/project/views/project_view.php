@@ -169,7 +169,10 @@
                 </tr>
                 <tbody class = "tbody"></tbody>
                   <tr class="colu"><td>Total Amount paid::</td> 
-                  <td class="paid" colspan="2"></td></tr>
+                      <td class="paid" colspan="2"></td></tr>
+                  <tr class="colu">
+                  <td >Due Amount::</td>
+                  <td class="due" colspan="2"></td></tr>
             </table>
             <div class="modal-footer">
                 <button  class="btn btn-primary export"  ><a href="">Export</a></button>

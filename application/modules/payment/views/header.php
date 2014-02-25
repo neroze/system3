@@ -47,6 +47,10 @@
                             </a>
                             <ul class="dropdown-menu"><li>
                                    <a href="<?php echo base_url('auth/logout')?>">Check Out</a></li>
+                                 <?php if ($this->session->userdata('user') == 'rojan@admin.com'):?> 
+                                <li> <a href="<?php echo base_url('auth/create_user')?>">Create User</a></li>
+                                <?php endif;?>
+                                <li> <a href="<?php echo base_url('auth/change_password')?>">Change Password</a></li>
                             </ul>
                         </li>
                     </ul>

@@ -14,7 +14,7 @@ class Client extends MX_Controller {
     }
 
     public function index() {
-        
+        $this->load->library('session');
         $limit = 10;
         $n = 4;
         $this->load->model('client_model');

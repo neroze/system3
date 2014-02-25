@@ -85,6 +85,7 @@ $(document).ready(function() {
                 //console.log(val.Tit);
                 });
                 $('.paid').html("Rs."+result.b); 
+                $('.due').html("Rs."+result.c); 
                 $('.export a').attr('href',baseurl +"project/export/"+result.a[0].id); 
             }
         });
