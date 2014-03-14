@@ -1,3 +1,15 @@
+<html lang="en">
+<title>Attendance System</title>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="<?php echo base_url('css/bootstrap.min.css');?>" rel="stylesheet" media="screen">
+   
+<link href="<?php echo base_url('css/bootstrap-responsive.css');?>" rel="stylesheet">
+</head>
+<body>
+    <div class="contain">
+
+
 <h1><?php echo lang('change_password_heading');?></h1>
 
 <div id="infoMessage"><?php echo $message;?></div>
@@ -23,3 +35,6 @@
       <p><?php echo form_submit('submit', lang('change_password_submit_btn'));?></p>
 
 <?php echo form_close();?>
+ </div>
+</body>
+</html>

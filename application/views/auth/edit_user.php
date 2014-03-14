@@ -1,3 +1,14 @@
+<html lang="en">
+<title>Attendance System</title>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="<?php echo base_url('css/bootstrap.min.css');?>" rel="stylesheet" media="screen">
+   
+<link href="<?php echo base_url('css/bootstrap-responsive.css');?>" rel="stylesheet">
+</head>
+<body>
+    <div class="contain">
+
 <h1><?php echo lang('edit_user_heading');?></h1>
 <p><?php echo lang('edit_user_subheading');?></p>
 
@@ -60,3 +71,6 @@
       <p><?php echo form_submit('submit', lang('edit_user_submit_btn'));?></p>
 
 <?php echo form_close();?>
+</div>
+</body>
+</html>

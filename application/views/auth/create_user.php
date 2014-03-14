@@ -1,14 +1,29 @@
+<html lang="en">
+<title>Attendance System</title>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="<?php echo base_url('css/bootstrap.min.css');?>" rel="stylesheet" media="screen">
+   
+<link href="<?php echo base_url('css/bootstrap-responsive.css');?>" rel="stylesheet">
+</head>
+<body>
+    <div class="contain">
+
+
 <h1><?php echo lang('create_user_heading');?></h1>
 <p><?php echo lang('create_user_subheading');?></p>
 
 <div id="infoMessage"><?php echo $message;?></div>
 
 <?php echo form_open("auth/create_user");?>
-
-      <p>
+<div class="control-group">
+      <div class="control-label">
             <?php echo lang('create_user_fname_label', 'first_name');?> <br />
+      </div>
+    <div class="controls">
             <?php echo form_input($first_name);?>
-      </p>
+        </div>  
+</div>
 
       <p>
             <?php echo lang('create_user_lname_label', 'first_name');?> <br />
@@ -44,3 +59,6 @@
       <p><?php echo form_submit('submit', lang('create_user_submit_btn'));?></p>
 
 <?php echo form_close();?>
+  </div>
+</body>
+</html>

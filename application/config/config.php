@@ -16,6 +16,8 @@
 */
 $config['base_url']	= '';
 
+$config['admin_email'] = 'coolsince1990@rocketmail.com';
+
 $config['modules_locations'] = array(
     APPPATH.'modules/' => '../modules/',
 );
